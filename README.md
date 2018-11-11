@@ -52,6 +52,7 @@ services.AddMvcCore()
 ```
 - You can add constraints to both: `controller` and `route` using `IRouteBuilder` returned by `AddController` or `AddRoute`
 - You can add them by using `AddFilter`/`AddConstraint` method with `IServiceProvider` parameter or extension without it
+- You can add named routes by using `WithNamed` method
 - To use predefined constraints and filters you need a `Phema.Routing.Extensions` package
 - For caching you can use `Phema.Routing.Extensions.Caching` package
 - To create custom filters and constraints you need `IFilterMetadata` or `IActionConstraintMetadata` in `Microsoft.AspNetCore.Mvc.Abstractions` package or inherit from derivatives
