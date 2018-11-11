@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp2.1</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Folder Include="wwwroot\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.App" />
+		<PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Phema.Routing.Extensions.Caching\Phema.Routing.Extensions.Caching.csproj" />
+	  <ProjectReference Include="..\Phema.Routing.Extensions\Phema.Routing.Extensions.csproj" />
+	  <ProjectReference Include="..\Phema.Routing\Phema.Routing.csproj" />
+	</ItemGroup>
+
+</Project>

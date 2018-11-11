@@ -1,0 +1,12 @@
+C:\Users\shaykhullin\Desktop\Phema.Routing\src\Phema.Routing.Extensions\bin\Debug\netcoreapp2.1\Phema.Routing.Extensions.deps.json
+C:\Users\shaykhullin\Desktop\Phema.Routing\src\Phema.Routing.Extensions\bin\Debug\netcoreapp2.1\Phema.Routing.Extensions.dll
+C:\Users\shaykhullin\Desktop\Phema.Routing\src\Phema.Routing.Extensions\bin\Debug\netcoreapp2.1\Phema.Routing.Extensions.pdb
+C:\Users\shaykhullin\Desktop\Phema.Routing\src\Phema.Routing.Extensions\bin\Debug\netcoreapp2.1\Phema.Routing.dll
+C:\Users\shaykhullin\Desktop\Phema.Routing\src\Phema.Routing.Extensions\bin\Debug\netcoreapp2.1\Phema.Routing.pdb
+C:\Users\shaykhullin\Desktop\Phema.Routing\src\Phema.Routing.Extensions\obj\Debug\netcoreapp2.1\Phema.Routing.Extensions.csprojAssemblyReference.cache
+C:\Users\shaykhullin\Desktop\Phema.Routing\src\Phema.Routing.Extensions\obj\Debug\netcoreapp2.1\Phema.Routing.Extensions.csproj.CoreCompileInputs.cache
+C:\Users\shaykhullin\Desktop\Phema.Routing\src\Phema.Routing.Extensions\obj\Debug\netcoreapp2.1\Phema.Routing.Extensions.AssemblyInfoInputs.cache
+C:\Users\shaykhullin\Desktop\Phema.Routing\src\Phema.Routing.Extensions\obj\Debug\netcoreapp2.1\Phema.Routing.Extensions.AssemblyInfo.cs
+C:\Users\shaykhullin\Desktop\Phema.Routing\src\Phema.Routing.Extensions\obj\Debug\netcoreapp2.1\Phema.Routing.Extensions.csproj.CopyComplete
+C:\Users\shaykhullin\Desktop\Phema.Routing\src\Phema.Routing.Extensions\obj\Debug\netcoreapp2.1\Phema.Routing.Extensions.dll
+C:\Users\shaykhullin\Desktop\Phema.Routing\src\Phema.Routing.Extensions\obj\Debug\netcoreapp2.1\Phema.Routing.Extensions.pdb

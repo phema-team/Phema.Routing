@@ -1,0 +1,9 @@
+C:\Users\shaykhullin\Desktop\Phema.Routing\src\Phema.Routing\bin\Debug\netstandard2.0\Phema.Routing.deps.json
+C:\Users\shaykhullin\Desktop\Phema.Routing\src\Phema.Routing\bin\Debug\netstandard2.0\Phema.Routing.dll
+C:\Users\shaykhullin\Desktop\Phema.Routing\src\Phema.Routing\bin\Debug\netstandard2.0\Phema.Routing.pdb
+C:\Users\shaykhullin\Desktop\Phema.Routing\src\Phema.Routing\obj\Debug\netstandard2.0\Phema.Routing.csprojAssemblyReference.cache
+C:\Users\shaykhullin\Desktop\Phema.Routing\src\Phema.Routing\obj\Debug\netstandard2.0\Phema.Routing.csproj.CoreCompileInputs.cache
+C:\Users\shaykhullin\Desktop\Phema.Routing\src\Phema.Routing\obj\Debug\netstandard2.0\Phema.Routing.AssemblyInfoInputs.cache
+C:\Users\shaykhullin\Desktop\Phema.Routing\src\Phema.Routing\obj\Debug\netstandard2.0\Phema.Routing.AssemblyInfo.cs
+C:\Users\shaykhullin\Desktop\Phema.Routing\src\Phema.Routing\obj\Debug\netstandard2.0\Phema.Routing.dll
+C:\Users\shaykhullin\Desktop\Phema.Routing\src\Phema.Routing\obj\Debug\netstandard2.0\Phema.Routing.pdb

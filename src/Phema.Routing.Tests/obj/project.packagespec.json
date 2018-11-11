@@ -1,0 +1,65 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "C:\\Users\\shaykhullin\\Desktop\\Phema.Routing\\src\\Phema.Routing.Tests\\Phema.Routing.Tests.csproj",
+    "projectName": "Phema.Routing.Tests",
+    "projectPath": "C:\\Users\\shaykhullin\\Desktop\\Phema.Routing\\src\\Phema.Routing.Tests\\Phema.Routing.Tests.csproj",
+    "outputPath": "C:\\Users\\shaykhullin\\Desktop\\Phema.Routing\\src\\Phema.Routing.Tests\\obj\\",
+    "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "netcoreapp2.1"
+    ],
+    "frameworks": {
+      "netcoreapp2.1": {
+        "projectReferences": {
+          "C:\\Users\\shaykhullin\\Desktop\\Phema.Routing\\src\\Phema.Routing.Extensions.Caching\\Phema.Routing.Extensions.Caching.csproj": {
+            "projectPath": "C:\\Users\\shaykhullin\\Desktop\\Phema.Routing\\src\\Phema.Routing.Extensions.Caching\\Phema.Routing.Extensions.Caching.csproj"
+          },
+          "C:\\Users\\shaykhullin\\Desktop\\Phema.Routing\\src\\Phema.Routing.Extensions\\Phema.Routing.Extensions.csproj": {
+            "projectPath": "C:\\Users\\shaykhullin\\Desktop\\Phema.Routing\\src\\Phema.Routing.Extensions\\Phema.Routing.Extensions.csproj"
+          },
+          "C:\\Users\\shaykhullin\\Desktop\\Phema.Routing\\src\\Phema.Routing\\Phema.Routing.csproj": {
+            "projectPath": "C:\\Users\\shaykhullin\\Desktop\\Phema.Routing\\src\\Phema.Routing\\Phema.Routing.csproj"
+          }
+        }
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.1": {
+      "dependencies": {
+        "Microsoft.NET.Test.Sdk": {
+          "target": "Package",
+          "version": "[15.8.0, )"
+        },
+        "Microsoft.NETCore.App": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.1.0, )",
+          "autoReferenced": true
+        },
+        "xunit": {
+          "target": "Package",
+          "version": "[2.3.1, )"
+        },
+        "xunit.runner.visualstudio": {
+          "target": "Package",
+          "version": "[2.3.1, )"
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}
