@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ActionConstraints;
+﻿using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Internal;
+using Microsoft.AspNetCore.Mvc.ActionConstraints;
+
+[assembly: InternalsVisibleTo("Phema.Routing.Tests")]
 
 namespace Phema.Routing
 {

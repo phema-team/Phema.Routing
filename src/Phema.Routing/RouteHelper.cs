@@ -57,6 +57,10 @@ namespace Phema.Routing
 						parameters.Add(methodParameters[i], new ParameterMetadata(BindingSource.Custom));
 						break;
 					
+					case nameof(From.ModelBinding):
+						parameters.Add(methodParameters[i], new ParameterMetadata(BindingSource.ModelBinding));
+						break;
+					
 					case nameof(From.Special):
 						parameters.Add(methodParameters[i], new ParameterMetadata(BindingSource.Special));
 						break;
@@ -64,6 +68,9 @@ namespace Phema.Routing
 					case nameof(From.FormFile):
 						parameters.Add(methodParameters[i], new ParameterMetadata(BindingSource.FormFile));
 						break;
+					
+					default:
+						throw new IndexOutOfRangeException(nameof(argument));
 				}
 			}
 		}

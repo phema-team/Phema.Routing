@@ -150,6 +150,21 @@ namespace Phema.Routing.Tests
 		}
 		
 		[Fact]
+		public void FromModelBinding()
+		{
+			services.AddMvcCore()
+				.AddRouting(routing =>
+					routing.AddController<TestController>("test", controller =>
+						controller.AddRoute("works", c => c.TestMethod(From.ModelBinding<string>()))));
+
+			var provider = services.BuildServiceProvider();
+			var options = provider.GetRequiredService<IOptions<RoutingOptions>>().Value;
+			
+			var (_, parameterMetadata) = Assert.Single(options.Parameters);
+			Assert.Equal(BindingSource.ModelBinding, parameterMetadata.BindingSource);
+		}
+		
+		[Fact]
 		public void FromFormFile()
 		{
 			services.AddMvcCore()

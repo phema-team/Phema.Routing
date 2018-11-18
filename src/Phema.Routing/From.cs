@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("Phema.Routing.Tests")]
 
 namespace Phema.Routing
 {
@@ -35,6 +38,11 @@ namespace Phema.Routing
 		}
 
 		public static TValue Any<TValue>()
+		{
+			throw new NotImplementedException();
+		}
+		
+		public static TValue ModelBinding<TValue>()
 		{
 			throw new NotImplementedException();
 		}
