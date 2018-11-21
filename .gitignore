@@ -32,3 +32,15 @@ src/Phema\.Routing\.Extensions\.Caching/obj/
 \.idea/\.idea\.Phema\.Routing/\.idea/
 
 \.idea/\.idea\.Phema\.Routing/
+
+src/Phema\.Routing\.Extensions\.Caching/bin/Release/netcoreapp2\.1/
+
+src/Phema\.Routing\.Extensions\.Caching/bin/Release/
+
+src/Phema\.Routing\.Extensions/bin/Release/netcoreapp2\.1/
+
+src/Phema\.Routing\.Extensions/bin/Release/
+
+src/Phema\.Routing/bin/Release/netstandard2\.0/
+
+src/Phema\.Routing/bin/Release/
