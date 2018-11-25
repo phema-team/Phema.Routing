@@ -7,8 +7,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Phema.Routing.Extensions\Phema.Routing.Extensions.csproj" />
-	  <ProjectReference Include="..\Phema.Routing\Phema.Routing.csproj" />
+		<ProjectReference Include="..\Phema.Routing.Extensions\Phema.Routing.Extensions.csproj"/>
+		<ProjectReference Include="..\Phema.Routing\Phema.Routing.csproj"/>
 	</ItemGroup>
 
 </Project>
