@@ -10,7 +10,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Phema.Routing.Extensions.Caching\Phema.Routing.Extensions.Caching.csproj" />
 		<ProjectReference Include="..\Phema.Routing.Extensions\Phema.Routing.Extensions.csproj" />
 		<ProjectReference Include="..\Phema.Routing\Phema.Routing.csproj" />
 	</ItemGroup>

@@ -1,4 +1,3 @@
-<<<<<<< HEAD:tests/Phema.Routing.Tests/Phema.Routing.Tests.csproj
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
@@ -8,37 +7,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0" />
-		<PackageReference Include="xunit" Version="2.3.1" />
-		<PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
-		<DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\..\src\Phema.Routing\Phema.Routing.csproj" />
-	</ItemGroup>
-
-</Project>
-=======
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-	<PropertyGroup>
-		<TargetFramework>netcoreapp2.1</TargetFramework>
-
-		<IsPackable>false</IsPackable>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0"/>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0"/>
 		<PackageReference Include="xunit" Version="2.3.1"/>
 		<PackageReference Include="xunit.runner.visualstudio" Version="2.3.1"/>
+		<DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1"/>
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Phema.Routing.Extensions.Caching\Phema.Routing.Extensions.Caching.csproj"/>
-		<ProjectReference Include="..\Phema.Routing.Extensions\Phema.Routing.Extensions.csproj"/>
-		<ProjectReference Include="..\Phema.Routing\Phema.Routing.csproj"/>
+		<ProjectReference Include="..\..\src\Phema.Routing\Phema.Routing.csproj"/>
 	</ItemGroup>
 
 </Project>
->>>>>>> master:src/Phema.Routing.Tests/Phema.Routing.Tests.csproj

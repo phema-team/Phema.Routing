@@ -44,3 +44,13 @@ src/Phema\.Routing\.Extensions/bin/Release/
 src/Phema\.Routing/bin/Release/netstandard2\.0/
 
 src/Phema\.Routing/bin/Release/
+
+tests/Phema\.Routing\.Extensions\.Tests/bin/Release/netcoreapp2\.1/
+
+tests/Phema\.Routing\.Extensions\.Tests/obj/Release/netcoreapp2\.1/
+
+tests/Phema\.Routing\.Tests/bin/Release/netcoreapp2\.1/
+
+tests/Phema\.Routing\.Tests/obj/Release/netcoreapp2\.1/
+
+tests/Phema\.Routing\.Extensions\.Tests/obj/
