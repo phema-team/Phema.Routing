@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.ApplicationModels;
 
 namespace Phema.Routing
 {
-	internal class ParameterModelConvention : IParameterModelConvention
+	internal sealed class ParameterModelConvention : IParameterModelConvention
 	{
 		private readonly RoutingOptions options;
 

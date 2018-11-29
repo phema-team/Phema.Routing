@@ -1,0 +1,59 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "/home/shaykhullin/Git/phema/phema.routing/tests/Phema.Routing.Tests/Phema.Routing.Tests.csproj",
+    "projectName": "Phema.Routing.Tests",
+    "projectPath": "/home/shaykhullin/Git/phema/phema.routing/tests/Phema.Routing.Tests/Phema.Routing.Tests.csproj",
+    "outputPath": "/home/shaykhullin/Git/phema/phema.routing/tests/Phema.Routing.Tests/obj/",
+    "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "netcoreapp2.1"
+    ],
+    "frameworks": {
+      "netcoreapp2.1": {
+        "projectReferences": {
+          "/home/shaykhullin/Git/phema/phema.routing/src/Phema.Routing/Phema.Routing.csproj": {
+            "projectPath": "/home/shaykhullin/Git/phema/phema.routing/src/Phema.Routing/Phema.Routing.csproj"
+          }
+        }
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.1": {
+      "dependencies": {
+        "Microsoft.NET.Test.Sdk": {
+          "target": "Package",
+          "version": "[15.7.0, )"
+        },
+        "Microsoft.NETCore.App": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.1.0, )",
+          "autoReferenced": true
+        },
+        "xunit": {
+          "target": "Package",
+          "version": "[2.3.1, )"
+        },
+        "xunit.runner.visualstudio": {
+          "target": "Package",
+          "version": "[2.3.1, )"
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}

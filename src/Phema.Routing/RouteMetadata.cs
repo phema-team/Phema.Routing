@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.ActionConstraints;
 
 namespace Phema.Routing
 {
-	internal class RouteMetadata
+	internal sealed class RouteMetadata
 	{
 		public RouteMetadata(string template)
 		{

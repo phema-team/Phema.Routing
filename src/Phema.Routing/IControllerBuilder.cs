@@ -9,7 +9,7 @@ namespace Phema.Routing
 		IRouteBuilder AddRoute<TResult>(string template, Expression<Func<TController, TResult>> expression);
 	}
 	
-	internal class ControllerBuilder<TController> : IControllerBuilder<TController>
+	internal sealed class ControllerBuilder<TController> : IControllerBuilder<TController>
 	{
 		private readonly IServiceCollection services;
 

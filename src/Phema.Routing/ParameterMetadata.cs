@@ -2,7 +2,7 @@
 
 namespace Phema.Routing
 {
-	internal class ParameterMetadata
+	internal sealed class ParameterMetadata
 	{
 		public ParameterMetadata(BindingSource bindingSource)
 		{

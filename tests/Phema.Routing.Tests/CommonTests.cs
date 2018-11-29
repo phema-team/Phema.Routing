@@ -8,14 +8,6 @@ using Xunit;
 
 namespace Phema.Routing.Tests
 {
-	public class TestController
-	{
-		public string TestMethod(string parameter)
-		{
-			return parameter;
-		}
-	}
-	
 	public class CommonTests
 	{
 		private readonly IServiceCollection services;

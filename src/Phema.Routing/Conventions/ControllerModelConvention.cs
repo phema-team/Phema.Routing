@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.ApplicationModels;
 
 namespace Phema.Routing
 {
-	internal class ControllerModelConvention : IControllerModelConvention
+	internal sealed class ControllerModelConvention : IControllerModelConvention
 	{
 		private readonly RoutingOptions options;
 		private readonly IServiceProvider provider;

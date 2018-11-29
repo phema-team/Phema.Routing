@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Internal;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
 
-[assembly: InternalsVisibleTo("Phema.Routing.Tests")]
+[assembly: InternalsVisibleTo("Phema.Routing.Extensions.Tests")]
 
 namespace Phema.Routing
 {

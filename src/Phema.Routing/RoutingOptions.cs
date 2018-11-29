@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Phema.Routing
 {
-	internal class RoutingOptions
+	internal sealed class RoutingOptions
 	{
 		public RoutingOptions()
 		{

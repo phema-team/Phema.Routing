@@ -13,7 +13,7 @@ namespace Phema.Routing
 		IRouteBuilder WithName(string name);
 	}
 
-	internal class RouteBuilder : IRouteBuilder
+	internal sealed class RouteBuilder : IRouteBuilder
 	{
 		private readonly RouteMetadata metadata;
 
