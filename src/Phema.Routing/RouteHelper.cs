@@ -8,6 +8,8 @@ namespace Phema.Routing
 {
 	internal static class RouteHelper
 	{
+		private static readonly IDictionary<string, BindingSource> map;
+
 		public static MethodInfo AddRouteParameters<TController, TResult>(
 			IDictionary<ParameterInfo, ParameterMetadata> parameters,
 			Expression<Func<TController, TResult>> expression)
@@ -26,53 +28,29 @@ namespace Phema.Routing
 			for (var i = 0; i < methodParameters.Length; i++)
 			{
 				var argument = (MethodCallExpression)expression.Arguments[i];
+				var methodParameter = methodParameters[i];
 
-				switch (argument.Method.Name)
-				{
-					case nameof(From.Body):
-						parameters.Add(methodParameters[i], new ParameterMetadata(BindingSource.Body));
-						break;
-
-					case nameof(From.Route):
-						parameters.Add(methodParameters[i], new ParameterMetadata(BindingSource.Path));
-						break;
-
-					case nameof(From.Header):
-						parameters.Add(methodParameters[i], new ParameterMetadata(BindingSource.Header));
-						break;
-
-					case nameof(From.Services):
-						parameters.Add(methodParameters[i], new ParameterMetadata(BindingSource.Services));
-						break;
-
-					case nameof(From.Query):
-						parameters.Add(methodParameters[i], new ParameterMetadata(BindingSource.Query));
-						break;
-
-					case nameof(From.Form):
-						parameters.Add(methodParameters[i], new ParameterMetadata(BindingSource.Form));
-						break;
-
-					case nameof(From.Any):
-						parameters.Add(methodParameters[i], new ParameterMetadata(BindingSource.Custom));
-						break;
-					
-					case nameof(From.ModelBinding):
-						parameters.Add(methodParameters[i], new ParameterMetadata(BindingSource.ModelBinding));
-						break;
-					
-					case nameof(From.Special):
-						parameters.Add(methodParameters[i], new ParameterMetadata(BindingSource.Special));
-						break;
-					
-					case nameof(From.FormFile):
-						parameters.Add(methodParameters[i], new ParameterMetadata(BindingSource.FormFile));
-						break;
-					
-					default:
-						throw new IndexOutOfRangeException(nameof(argument));
-				}
+				var parameterMetadata = new ParameterMetadata(map[argument.Method.Name]);
+				
+				parameters.Add(methodParameter, parameterMetadata);
 			}
+		}
+
+		static RouteHelper()
+		{
+			map = new Dictionary<string, BindingSource>
+			{
+				[nameof(From.Body)] = BindingSource.Body,
+				[nameof(From.Route)] = BindingSource.Path,
+				[nameof(From.Header)] = BindingSource.Header,
+				[nameof(From.Services)] = BindingSource.Services,
+				[nameof(From.Query)] = BindingSource.Query,
+				[nameof(From.Form)] = BindingSource.Form,
+				[nameof(From.Any)] = BindingSource.Custom,
+				[nameof(From.ModelBinding)] = BindingSource.ModelBinding,
+				[nameof(From.Special)] = BindingSource.Special,
+				[nameof(From.FormFile)] = BindingSource.FormFile
+			};
 		}
 	}
 }

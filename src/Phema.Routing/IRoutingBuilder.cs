@@ -23,9 +23,7 @@ namespace Phema.Routing
 			var metadata = new RouteMetadata(template);
 
 			services.Configure<RoutingOptions>(options =>
-			{
-				options.Controllers.Add(typeof(TController).GetTypeInfo(), metadata);
-			});
+				options.Controllers.Add(typeof(TController).GetTypeInfo(), metadata));
 
 			action(new ControllerBuilder<TController>(services));
 

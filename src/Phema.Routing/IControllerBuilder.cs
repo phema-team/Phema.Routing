@@ -6,7 +6,9 @@ namespace Phema.Routing
 {
 	public interface IControllerBuilder<TController>
 	{
-		IRouteBuilder AddRoute<TResult>(string template, Expression<Func<TController, TResult>> expression);
+		IRouteBuilder AddRoute<TResult>(
+			string template, 
+			Expression<Func<TController, TResult>> expression);
 	}
 	
 	internal sealed class ControllerBuilder<TController> : IControllerBuilder<TController>
@@ -18,7 +20,9 @@ namespace Phema.Routing
 			this.services = services;
 		}
 
-		public IRouteBuilder AddRoute<TResult>(string template, Expression<Func<TController, TResult>> expression)
+		public IRouteBuilder AddRoute<TResult>(
+			string template, 
+			Expression<Func<TController, TResult>> expression)
 		{
 			var metadata = new RouteMetadata(template);
 
