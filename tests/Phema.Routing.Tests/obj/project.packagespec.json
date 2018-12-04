@@ -1,13 +1,13 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "/home/shaykhullin/Git/phema/phema.routing/tests/Phema.Routing.Tests/Phema.Routing.Tests.csproj",
+    "projectUniqueName": "D:\\Git\\Phema.Routing\\tests\\Phema.Routing.Tests\\Phema.Routing.Tests.csproj",
     "projectName": "Phema.Routing.Tests",
-    "projectPath": "/home/shaykhullin/Git/phema/phema.routing/tests/Phema.Routing.Tests/Phema.Routing.Tests.csproj",
-    "outputPath": "/home/shaykhullin/Git/phema/phema.routing/tests/Phema.Routing.Tests/obj/",
+    "projectPath": "D:\\Git\\Phema.Routing\\tests\\Phema.Routing.Tests\\Phema.Routing.Tests.csproj",
+    "outputPath": "D:\\Git\\Phema.Routing\\tests\\Phema.Routing.Tests\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
-      "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
     ],
     "originalTargetFrameworks": [
       "netcoreapp2.1"
@@ -15,8 +15,8 @@
     "frameworks": {
       "netcoreapp2.1": {
         "projectReferences": {
-          "/home/shaykhullin/Git/phema/phema.routing/src/Phema.Routing/Phema.Routing.csproj": {
-            "projectPath": "/home/shaykhullin/Git/phema/phema.routing/src/Phema.Routing/Phema.Routing.csproj"
+          "D:\\Git\\Phema.Routing\\src\\Phema.Routing\\Phema.Routing.csproj": {
+            "projectPath": "D:\\Git\\Phema.Routing\\src\\Phema.Routing\\Phema.Routing.csproj"
           }
         }
       }
