@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -31,7 +32,7 @@ namespace Phema.Routing.Tests
 
 			var methodActionConstraint = Assert.IsType<HttpMethodActionConstraint>(constraint);
 			
-			Assert.Equal(RouteBuilderExtensions.HttpHeadMethod, Assert.Single(methodActionConstraint.HttpMethods));
+			Assert.Equal(HttpMethods.Head, Assert.Single(methodActionConstraint.HttpMethods));
 		}
 		
 		[Fact]
@@ -51,7 +52,7 @@ namespace Phema.Routing.Tests
 
 			var methodActionConstraint = Assert.IsType<HttpMethodActionConstraint>(constraint);
 			
-			Assert.Equal(RouteBuilderExtensions.HttpGetMethod, Assert.Single(methodActionConstraint.HttpMethods));
+			Assert.Equal(HttpMethods.Get, Assert.Single(methodActionConstraint.HttpMethods));
 		}
 		
 		[Fact]
@@ -72,8 +73,8 @@ namespace Phema.Routing.Tests
 			var methodActionConstraint = Assert.IsType<HttpMethodActionConstraint>(constraint);
 			
 			Assert.Collection(methodActionConstraint.HttpMethods,
-				s => Assert.Equal(RouteBuilderExtensions.HttpHeadMethod, s),
-				s => Assert.Equal(RouteBuilderExtensions.HttpGetMethod, s));
+				s => Assert.Equal(HttpMethods.Head, s),
+				s => Assert.Equal(HttpMethods.Get, s));
 		}
 		
 		[Fact]
@@ -93,7 +94,7 @@ namespace Phema.Routing.Tests
 
 			var methodActionConstraint = Assert.IsType<HttpMethodActionConstraint>(constraint);
 			
-			Assert.Equal(RouteBuilderExtensions.HttpPostMethod, Assert.Single(methodActionConstraint.HttpMethods));
+			Assert.Equal(HttpMethods.Post, Assert.Single(methodActionConstraint.HttpMethods));
 		}
 		
 		[Fact]
@@ -113,7 +114,7 @@ namespace Phema.Routing.Tests
 
 			var methodActionConstraint = Assert.IsType<HttpMethodActionConstraint>(constraint);
 			
-			Assert.Equal(RouteBuilderExtensions.HttpPutMethod, Assert.Single(methodActionConstraint.HttpMethods));
+			Assert.Equal(HttpMethods.Put, Assert.Single(methodActionConstraint.HttpMethods));
 		}
 		
 		[Fact]
@@ -133,7 +134,7 @@ namespace Phema.Routing.Tests
 
 			var methodActionConstraint = Assert.IsType<HttpMethodActionConstraint>(constraint);
 			
-			Assert.Equal(RouteBuilderExtensions.HttpDeleteMethod, Assert.Single(methodActionConstraint.HttpMethods));
+			Assert.Equal(HttpMethods.Delete, Assert.Single(methodActionConstraint.HttpMethods));
 		}
 	}
 }

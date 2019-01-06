@@ -1,20 +1,13 @@
-﻿using System.Runtime.CompilerServices;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Internal;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
 
-[assembly: InternalsVisibleTo("Phema.Routing.Extensions.Tests")]
 
 namespace Phema.Routing
 {
 	public static class RouteBuilderExtensions
 	{
-		internal const string HttpHeadMethod = "HEAD";
-		internal const string HttpGetMethod = "GET";
-		internal const string HttpPostMethod = "POST";
-		internal const string HttpPutMethod = "PUT";
-		internal const string HttpDeleteMethod = "DELETE";
-		
 		public static IRouteBuilder AddConstraint(this IRouteBuilder builder, IActionConstraintMetadata constraint)
 		{
 			return builder.AddConstraint(sp => constraint);
@@ -27,32 +20,32 @@ namespace Phema.Routing
 		
 		public static IRouteBuilder HttpHead(this IRouteBuilder builder)
 		{
-			return builder.AddConstraint(new HttpMethodActionConstraint(new[] { HttpHeadMethod }));
+			return builder.AddConstraint(new HttpMethodActionConstraint(new[] { HttpMethods.Head }));
 		}
 		
 		public static IRouteBuilder HttpGet(this IRouteBuilder builder)
 		{
-			return builder.AddConstraint(new HttpMethodActionConstraint(new[] { HttpGetMethod }));
+			return builder.AddConstraint(new HttpMethodActionConstraint(new[] { HttpMethods.Get }));
 		}
 		
 		public static IRouteBuilder HttpGetOrHead(this IRouteBuilder builder)
 		{
-			return builder.AddConstraint(new HttpMethodActionConstraint(new[] { HttpHeadMethod, HttpGetMethod }));
+			return builder.AddConstraint(new HttpMethodActionConstraint(new[] { HttpMethods.Head, HttpMethods.Get }));
 		}
 
 		public static IRouteBuilder HttpPost(this IRouteBuilder builder)
 		{
-			return builder.AddConstraint(new HttpMethodActionConstraint(new[] { HttpPostMethod }));
+			return builder.AddConstraint(new HttpMethodActionConstraint(new[] { HttpMethods.Post }));
 		}
 
 		public static IRouteBuilder HttpPut(this IRouteBuilder builder)
 		{
-			return builder.AddConstraint(new HttpMethodActionConstraint(new[] { HttpPutMethod }));
+			return builder.AddConstraint(new HttpMethodActionConstraint(new[] { HttpMethods.Put }));
 		}
 
 		public static IRouteBuilder HttpDelete(this IRouteBuilder builder)
 		{
-			return builder.AddConstraint(new HttpMethodActionConstraint(new[] { HttpDeleteMethod }));
+			return builder.AddConstraint(new HttpMethodActionConstraint(new[] { HttpMethods.Delete }));
 		}
 	}
 }
