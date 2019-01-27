@@ -25,7 +25,7 @@ namespace Phema.Routing.Tests
 
 			var provider = services.BuildServiceProvider();
 
-			var options = provider.GetRequiredService<IOptions<RoutingOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<RoutingConfigurationOptions>>().Value;
 			
 			var (_, actionMetadata) = Assert.Single(options.Controllers);
 			var constraint = Assert.Single(actionMetadata.Constraints)(provider);
@@ -45,7 +45,7 @@ namespace Phema.Routing.Tests
 
 			var provider = services.BuildServiceProvider();
 
-			var options = provider.GetRequiredService<IOptions<RoutingOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<RoutingConfigurationOptions>>().Value;
 			
 			var (_, actionMetadata) = Assert.Single(options.Controllers);
 			var constraint = Assert.Single(actionMetadata.Constraints)(provider);
@@ -65,7 +65,7 @@ namespace Phema.Routing.Tests
 
 			var provider = services.BuildServiceProvider();
 
-			var options = provider.GetRequiredService<IOptions<RoutingOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<RoutingConfigurationOptions>>().Value;
 			
 			var (_, actionMetadata) = Assert.Single(options.Controllers);
 			var constraint = Assert.Single(actionMetadata.Constraints)(provider);
@@ -87,7 +87,7 @@ namespace Phema.Routing.Tests
 
 			var provider = services.BuildServiceProvider();
 
-			var options = provider.GetRequiredService<IOptions<RoutingOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<RoutingConfigurationOptions>>().Value;
 			
 			var (_, actionMetadata) = Assert.Single(options.Controllers);
 			var constraint = Assert.Single(actionMetadata.Constraints)(provider);
@@ -107,7 +107,7 @@ namespace Phema.Routing.Tests
 
 			var provider = services.BuildServiceProvider();
 
-			var options = provider.GetRequiredService<IOptions<RoutingOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<RoutingConfigurationOptions>>().Value;
 			
 			var (_, actionMetadata) = Assert.Single(options.Controllers);
 			var constraint = Assert.Single(actionMetadata.Constraints)(provider);
@@ -127,7 +127,7 @@ namespace Phema.Routing.Tests
 
 			var provider = services.BuildServiceProvider();
 
-			var options = provider.GetRequiredService<IOptions<RoutingOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<RoutingConfigurationOptions>>().Value;
 			
 			var (_, actionMetadata) = Assert.Single(options.Controllers);
 			var constraint = Assert.Single(actionMetadata.Constraints)(provider);

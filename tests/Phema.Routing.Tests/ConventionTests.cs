@@ -26,7 +26,7 @@ namespace Phema.Routing.Tests
 
 			var controllerTypeInfo = typeof(TestController).GetTypeInfo();
 			
-			var convention = new ControllerModelConvention(provider, new RoutingOptions
+			var convention = new ControllerModelConvention(provider, new RoutingConfigurationOptions
 			{
 				Controllers =
 				{
@@ -68,7 +68,7 @@ namespace Phema.Routing.Tests
 
 			var actionMethodInfo = typeof(TestController).GetMethod(nameof(TestController.TestMethod));
 			
-			var convention = new ActionModelConvention(provider, new RoutingOptions
+			var convention = new ActionModelConvention(provider, new RoutingConfigurationOptions
 			{
 				Actions =
 				{
@@ -107,7 +107,7 @@ namespace Phema.Routing.Tests
 		{
 			var parameterInfo = typeof(TestController).GetMethod(nameof(TestController.TestMethod)).GetParameters().Single();
 			
-			var convention = new ParameterModelConvention(new RoutingOptions
+			var convention = new ParameterModelConvention(new RoutingConfigurationOptions
 			{
 				Parameters =
 				{

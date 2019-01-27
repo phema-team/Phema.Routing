@@ -8,7 +8,7 @@ namespace Phema.Routing
 {
 	internal static class RouteHelper
 	{
-		private static readonly IDictionary<string, BindingSource> map;
+		private static IDictionary<string, BindingSource> BindingSourceMap { get; }
 
 		public static MethodInfo AddRouteParameters<TController, TResult>(
 			IDictionary<ParameterInfo, ParameterMetadata> parameters,
@@ -30,7 +30,7 @@ namespace Phema.Routing
 				var argument = (MethodCallExpression)expression.Arguments[i];
 				var methodParameter = methodParameters[i];
 
-				var parameterMetadata = new ParameterMetadata(map[argument.Method.Name]);
+				var parameterMetadata = new ParameterMetadata(BindingSourceMap[argument.Method.Name]);
 				
 				parameters.Add(methodParameter, parameterMetadata);
 			}
@@ -38,7 +38,7 @@ namespace Phema.Routing
 
 		static RouteHelper()
 		{
-			map = new Dictionary<string, BindingSource>
+			BindingSourceMap = new Dictionary<string, BindingSource>
 			{
 				[nameof(From.Body)] = BindingSource.Body,
 				[nameof(From.Route)] = BindingSource.Path,

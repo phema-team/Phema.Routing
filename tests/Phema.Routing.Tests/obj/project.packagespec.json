@@ -1,22 +1,22 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "D:\\Git\\Phema.Routing\\tests\\Phema.Routing.Tests\\Phema.Routing.Tests.csproj",
+    "projectUniqueName": "C:\\Users\\Sergey\\GitHub\\Phema.Routing\\tests\\Phema.Routing.Tests\\Phema.Routing.Tests.csproj",
     "projectName": "Phema.Routing.Tests",
-    "projectPath": "D:\\Git\\Phema.Routing\\tests\\Phema.Routing.Tests\\Phema.Routing.Tests.csproj",
-    "outputPath": "D:\\Git\\Phema.Routing\\tests\\Phema.Routing.Tests\\obj\\",
+    "projectPath": "C:\\Users\\Sergey\\GitHub\\Phema.Routing\\tests\\Phema.Routing.Tests\\Phema.Routing.Tests.csproj",
+    "outputPath": "C:\\Users\\Sergey\\GitHub\\Phema.Routing\\tests\\Phema.Routing.Tests\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
     ],
     "originalTargetFrameworks": [
-      "netcoreapp2.1"
+      "netcoreapp2.2"
     ],
     "frameworks": {
-      "netcoreapp2.1": {
+      "netcoreapp2.2": {
         "projectReferences": {
-          "D:\\Git\\Phema.Routing\\src\\Phema.Routing\\Phema.Routing.csproj": {
-            "projectPath": "D:\\Git\\Phema.Routing\\src\\Phema.Routing\\Phema.Routing.csproj"
+          "C:\\Users\\Sergey\\GitHub\\Phema.Routing\\src\\Phema.Routing\\Phema.Routing.csproj": {
+            "projectPath": "C:\\Users\\Sergey\\GitHub\\Phema.Routing\\src\\Phema.Routing\\Phema.Routing.csproj"
           }
         }
       }
@@ -28,7 +28,7 @@
     }
   },
   "frameworks": {
-    "netcoreapp2.1": {
+    "netcoreapp2.2": {
       "dependencies": {
         "Microsoft.NET.Test.Sdk": {
           "target": "Package",
@@ -37,7 +37,7 @@
         "Microsoft.NETCore.App": {
           "suppressParent": "All",
           "target": "Package",
-          "version": "[2.1.0, )",
+          "version": "[2.2.0, )",
           "autoReferenced": true
         },
         "xunit": {

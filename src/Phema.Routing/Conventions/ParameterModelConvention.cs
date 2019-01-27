@@ -5,9 +5,9 @@ namespace Phema.Routing
 {
 	internal sealed class ParameterModelConvention : IParameterModelConvention
 	{
-		private readonly RoutingOptions options;
+		private readonly RoutingConfigurationOptions options;
 
-		public ParameterModelConvention(RoutingOptions options)
+		public ParameterModelConvention(RoutingConfigurationOptions options)
 		{
 			this.options = options;
 		}

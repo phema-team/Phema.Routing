@@ -7,10 +7,10 @@ namespace Phema.Routing
 {
 	internal sealed class MvcOptionsPostConfiguration : IPostConfigureOptions<MvcOptions>
 	{
-		private readonly RoutingOptions options;
+		private readonly RoutingConfigurationOptions options;
 		private readonly IServiceProvider provider;
 
-		public MvcOptionsPostConfiguration(IServiceProvider provider, IOptions<RoutingOptions> options)
+		public MvcOptionsPostConfiguration(IServiceProvider provider, IOptions<RoutingConfigurationOptions> options)
 		{
 			this.provider = provider;
 			this.options = options.Value;

@@ -26,7 +26,7 @@ namespace Phema.Routing
 		{
 			var metadata = new RouteMetadata(template);
 
-			services.Configure<RoutingOptions>(options =>
+			services.Configure<RoutingConfigurationOptions>(options =>
 			{
 				var method = RouteHelper.AddRouteParameters(options.Parameters, expression);
 

@@ -24,7 +24,7 @@ namespace Phema.Routing.Tests
 			var provider = services.BuildServiceProvider();
 
 			var controllertype = typeof(TestController);
-			var options = provider.GetRequiredService<IOptions<RoutingOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<RoutingConfigurationOptions>>().Value;
 
 			var (controllerTypeInfo, controllerMetadata) = Assert.Single(options.Controllers);
 			Assert.Equal(controllertype.GetTypeInfo(), controllerTypeInfo);

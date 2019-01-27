@@ -6,10 +6,10 @@ namespace Phema.Routing
 {
 	internal sealed class ActionModelConvention : IActionModelConvention
 	{
-		private readonly RoutingOptions options;
+		private readonly RoutingConfigurationOptions options;
 		private readonly IServiceProvider provider;
 
-		public ActionModelConvention(IServiceProvider provider, RoutingOptions options)
+		public ActionModelConvention(IServiceProvider provider, RoutingConfigurationOptions options)
 		{
 			this.options = options;
 			this.provider = provider;
