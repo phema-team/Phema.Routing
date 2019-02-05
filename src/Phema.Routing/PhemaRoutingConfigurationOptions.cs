@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Phema.Routing
 {
-	internal sealed class RoutingConfigurationOptions
+	internal sealed class PhemaRoutingConfigurationOptions
 	{
-		public RoutingConfigurationOptions()
+		public PhemaRoutingConfigurationOptions()
 		{
 			Parameters = new Dictionary<ParameterInfo, ParameterMetadata>();
 			Controllers = new Dictionary<TypeInfo, RouteMetadata>();

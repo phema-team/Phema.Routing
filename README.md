@@ -1,25 +1,17 @@
-# Phema.Routing
-
-C# typed routing library for asp.net core
-
-- [x] Core library
-- [x] Extensions
-- [x] Tests
-
-# Simple usage
+## Phema.Routing
 ```csharp
 // Startup
 services.AddMvcCore()
-  .AddRouting(routing => {});
+  .AddPhemaRouting(routing => {});
 ```
-- You have two ways to add routing: using `IMvcBuilder` or `IMvcCoreBuilder` extensions - `AddRouting`
-- In `AddRouting` pass callback with `IRoutingConfiguration` to register route parts
+- You have two ways to add routing: using `IMvcBuilder` or `IMvcCoreBuilder` extensions - `AddPhemaRouting`
+- In `AddPhemaRouting` pass callback with `IRoutingConfiguration` to register route parts
 
-# Adding controller
+## Adding controller
 ```csharp
 // Startup
 services.AddMvcCore()
-  .AddRouting(routing =>
+  .AddPhemaRouting(routing =>
     // Add controller
     routing.AddController<TestController>("controller-route-part", controller => {});
 ```
@@ -27,11 +19,11 @@ services.AddMvcCore()
 - You can remove route part: `AddController<TestController>(controller => {})`. 
 - It will be an empty string (so just `/` route)
 
-# Adding routes
+## Adding routes
 ```csharp
 // Startup
 services.AddMvcCore()
-  .AddRouting(routing => 
+  .AddPhemaRouting(routing => 
     routing.AddController<TestController>("controller-route-part", 
       // Add route
       controller => controller.AddRoute("action-route-part", c => c.TestMethod()));
@@ -39,11 +31,11 @@ services.AddMvcCore()
 - To add action route you need to specify an action route (goes after controller route `controller/action`) and expression for method
 - By default route adds without any http method constraint (so you can call it with get, post, etc.)
 
-# Adding constraints
+## Adding constraints
 ```csharp
 // Startup
 services.AddMvcCore()
-  .AddRouting(routing => 
+  .AddPhemaRouting(routing => 
     routing.AddController<TestController>("controller-route-part", 
       controller => 
         controller.AddRoute("action-route-part", c => c.TestMethod())
@@ -58,10 +50,10 @@ services.AddMvcCore()
 - To create custom filters and constraints you need `IFilterMetadata` or `IActionConstraintMetadata` in `Microsoft.AspNetCore.Mvc.Abstractions` package or inherit from derivatives
 - You can add `HttpGet`, `Cached`, etc. to controller's `IRouteBuilder` it means that any action inside will be `HttpGet`, `Cached`, etc.
 
-# Adding parameters
+## Adding parameters
 ```csharp
 services.AddMvcCore()
-  .AddRouting(routing => 
+  .AddPhemaRouting(routing => 
     routing.AddController<TestController>("controller-route-part", 
       controller => 
         controller.AddRoute("action-route-part", 

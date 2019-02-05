@@ -18,12 +18,12 @@ namespace Phema.Routing.Tests
 		public void FromTypeEquality()
 		{
 			services.AddMvcCore()
-				.AddRouting(routing =>
+				.AddPhemaRouting(routing =>
 					routing.AddController<TestController>("test", controller =>
 						controller.AddRoute("works", c => c.TestMethod(From.Query<string>()))));
 
 			var provider = services.BuildServiceProvider();
-			var options = provider.GetRequiredService<IOptions<RoutingConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<PhemaRoutingConfigurationOptions>>().Value;
 
 			var (parameterInfo, _) = Assert.Single(options.Parameters);
 			Assert.Equal(typeof(string), parameterInfo.ParameterType);
@@ -33,12 +33,12 @@ namespace Phema.Routing.Tests
 		public void FromQuery()
 		{
 			services.AddMvcCore()
-				.AddRouting(routing =>
+				.AddPhemaRouting(routing =>
 					routing.AddController<TestController>("test", controller =>
 						controller.AddRoute("works", c => c.TestMethod(From.Query<string>()))));
 
 			var provider = services.BuildServiceProvider();
-			var options = provider.GetRequiredService<IOptions<RoutingConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<PhemaRoutingConfigurationOptions>>().Value;
 			
 			var (_, parameterMetadata) = Assert.Single(options.Parameters);
 			Assert.Equal(BindingSource.Query, parameterMetadata.BindingSource);
@@ -48,12 +48,12 @@ namespace Phema.Routing.Tests
 		public void FromAny()
 		{
 			services.AddMvcCore()
-				.AddRouting(routing =>
+				.AddPhemaRouting(routing =>
 					routing.AddController<TestController>("test", controller =>
 						controller.AddRoute("works", c => c.TestMethod(From.Any<string>()))));
 
 			var provider = services.BuildServiceProvider();
-			var options = provider.GetRequiredService<IOptions<RoutingConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<PhemaRoutingConfigurationOptions>>().Value;
 			
 			var (_, parameterMetadata) = Assert.Single(options.Parameters);
 			Assert.Equal(BindingSource.Custom, parameterMetadata.BindingSource);
@@ -63,12 +63,12 @@ namespace Phema.Routing.Tests
 		public void FromBody()
 		{
 			services.AddMvcCore()
-				.AddRouting(routing =>
+				.AddPhemaRouting(routing =>
 					routing.AddController<TestController>("test", controller =>
 						controller.AddRoute("works", c => c.TestMethod(From.Body<string>()))));
 
 			var provider = services.BuildServiceProvider();
-			var options = provider.GetRequiredService<IOptions<RoutingConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<PhemaRoutingConfigurationOptions>>().Value;
 			
 			var (_, parameterMetadata) = Assert.Single(options.Parameters);
 			Assert.Equal(BindingSource.Body, parameterMetadata.BindingSource);
@@ -78,12 +78,12 @@ namespace Phema.Routing.Tests
 		public void FromForm()
 		{
 			services.AddMvcCore()
-				.AddRouting(routing =>
+				.AddPhemaRouting(routing =>
 					routing.AddController<TestController>("test", controller =>
 						controller.AddRoute("works", c => c.TestMethod(From.Form<string>()))));
 
 			var provider = services.BuildServiceProvider();
-			var options = provider.GetRequiredService<IOptions<RoutingConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<PhemaRoutingConfigurationOptions>>().Value;
 			
 			var (_, parameterMetadata) = Assert.Single(options.Parameters);
 			Assert.Equal(BindingSource.Form, parameterMetadata.BindingSource);
@@ -93,12 +93,12 @@ namespace Phema.Routing.Tests
 		public void FromRoute()
 		{
 			services.AddMvcCore()
-				.AddRouting(routing =>
+				.AddPhemaRouting(routing =>
 					routing.AddController<TestController>("test", controller =>
 						controller.AddRoute("works", c => c.TestMethod(From.Route<string>()))));
 
 			var provider = services.BuildServiceProvider();
-			var options = provider.GetRequiredService<IOptions<RoutingConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<PhemaRoutingConfigurationOptions>>().Value;
 			
 			var (_, parameterMetadata) = Assert.Single(options.Parameters);
 			Assert.Equal(BindingSource.Path, parameterMetadata.BindingSource);
@@ -108,12 +108,12 @@ namespace Phema.Routing.Tests
 		public void FromHeader()
 		{
 			services.AddMvcCore()
-				.AddRouting(routing =>
+				.AddPhemaRouting(routing =>
 					routing.AddController<TestController>("test", controller =>
 						controller.AddRoute("works", c => c.TestMethod(From.Header<string>()))));
 
 			var provider = services.BuildServiceProvider();
-			var options = provider.GetRequiredService<IOptions<RoutingConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<PhemaRoutingConfigurationOptions>>().Value;
 			
 			var (_, parameterMetadata) = Assert.Single(options.Parameters);
 			Assert.Equal(BindingSource.Header, parameterMetadata.BindingSource);
@@ -123,12 +123,12 @@ namespace Phema.Routing.Tests
 		public void FromServices()
 		{
 			services.AddMvcCore()
-				.AddRouting(routing =>
+				.AddPhemaRouting(routing =>
 					routing.AddController<TestController>("test", controller =>
 						controller.AddRoute("works", c => c.TestMethod(From.Services<string>()))));
 
 			var provider = services.BuildServiceProvider();
-			var options = provider.GetRequiredService<IOptions<RoutingConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<PhemaRoutingConfigurationOptions>>().Value;
 			
 			var (_, parameterMetadata) = Assert.Single(options.Parameters);
 			Assert.Equal(BindingSource.Services, parameterMetadata.BindingSource);
@@ -138,12 +138,12 @@ namespace Phema.Routing.Tests
 		public void FromSpecial()
 		{
 			services.AddMvcCore()
-				.AddRouting(routing =>
+				.AddPhemaRouting(routing =>
 					routing.AddController<TestController>("test", controller =>
 						controller.AddRoute("works", c => c.TestMethod(From.Special<string>()))));
 
 			var provider = services.BuildServiceProvider();
-			var options = provider.GetRequiredService<IOptions<RoutingConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<PhemaRoutingConfigurationOptions>>().Value;
 			
 			var (_, parameterMetadata) = Assert.Single(options.Parameters);
 			Assert.Equal(BindingSource.Special, parameterMetadata.BindingSource);
@@ -153,12 +153,12 @@ namespace Phema.Routing.Tests
 		public void FromModelBinding()
 		{
 			services.AddMvcCore()
-				.AddRouting(routing =>
+				.AddPhemaRouting(routing =>
 					routing.AddController<TestController>("test", controller =>
 						controller.AddRoute("works", c => c.TestMethod(From.ModelBinding<string>()))));
 
 			var provider = services.BuildServiceProvider();
-			var options = provider.GetRequiredService<IOptions<RoutingConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<PhemaRoutingConfigurationOptions>>().Value;
 			
 			var (_, parameterMetadata) = Assert.Single(options.Parameters);
 			Assert.Equal(BindingSource.ModelBinding, parameterMetadata.BindingSource);
@@ -168,12 +168,12 @@ namespace Phema.Routing.Tests
 		public void FromFormFile()
 		{
 			services.AddMvcCore()
-				.AddRouting(routing =>
+				.AddPhemaRouting(routing =>
 					routing.AddController<TestController>("test", controller =>
 						controller.AddRoute("works", c => c.TestMethod(From.FormFile<string>()))));
 
 			var provider = services.BuildServiceProvider();
-			var options = provider.GetRequiredService<IOptions<RoutingConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<PhemaRoutingConfigurationOptions>>().Value;
 			
 			var (_, parameterMetadata) = Assert.Single(options.Parameters);
 			Assert.Equal(BindingSource.FormFile, parameterMetadata.BindingSource);

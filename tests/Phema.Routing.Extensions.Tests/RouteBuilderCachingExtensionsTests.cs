@@ -13,14 +13,14 @@ namespace Phema.Routing.Tests
 			var services = new ServiceCollection();
 			
 			services.AddMvcCore()
-				.AddRouting(routing =>
+				.AddPhemaRouting(routing =>
 					routing.AddController<TestController>("test", controller =>
 						controller.AddRoute("works", c => c.TestMethod(From.Query<string>()))
 							.Cached()));
 
 			var provider = services.BuildServiceProvider();
 
-			var options = provider.GetRequiredService<IOptions<RoutingConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<PhemaRoutingConfigurationOptions>>().Value;
 			
 			var (_, actionMetadata) = Assert.Single(options.Actions);
 			var filter = Assert.Single(actionMetadata.Filters)(provider);
@@ -40,7 +40,7 @@ namespace Phema.Routing.Tests
 			var services = new ServiceCollection();
 			
 			services.AddMvcCore()
-				.AddRouting(routing =>
+				.AddPhemaRouting(routing =>
 					routing.AddController<TestController>("test", controller =>
 						controller.AddRoute("works", c => c.TestMethod(From.Query<string>()))
 							.Cached(
@@ -52,7 +52,7 @@ namespace Phema.Routing.Tests
 
 			var provider = services.BuildServiceProvider();
 
-			var options = provider.GetRequiredService<IOptions<RoutingConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<PhemaRoutingConfigurationOptions>>().Value;
 			
 			var (_, actionMetadata) = Assert.Single(options.Actions);
 			var filter = Assert.Single(actionMetadata.Filters)(provider);

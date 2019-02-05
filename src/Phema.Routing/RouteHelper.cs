@@ -14,9 +14,9 @@ namespace Phema.Routing
 			IDictionary<ParameterInfo, ParameterMetadata> parameters,
 			Expression<Func<TController, TResult>> expression)
 		{
-			var e = (MethodCallExpression)expression.Body;
-			AddRouteParameters(parameters, e);
-			return e.Method;
+			var callExpression = (MethodCallExpression)expression.Body;
+			AddRouteParameters(parameters, callExpression);
+			return callExpression.Method;
 		}
 
 		private static void AddRouteParameters(
