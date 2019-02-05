@@ -56,3 +56,13 @@ tests/Phema\.Routing\.Tests/obj/Release/netcoreapp2\.1/
 tests/Phema\.Routing\.Extensions\.Tests/obj/
 
 src/Phema\.Routing\.Sandbox/bin/Release/netcoreapp2\.1/
+
+src/Phema\.Routing\.Core/obj/
+
+tests/Phema\.Routing\.Tests/obj/
+
+src/Phema\.Routing\.Core/bin/Release/netcoreapp2\.2/
+
+tests/Phema\.Routing\.Extensions\.Tests/bin/Release/netcoreapp2\.2/
+
+tests/Phema\.Routing\.Tests/bin/Release/netcoreapp2\.2/
