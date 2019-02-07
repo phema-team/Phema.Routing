@@ -66,3 +66,5 @@ src/Phema\.Routing\.Core/bin/Release/netcoreapp2\.2/
 tests/Phema\.Routing\.Extensions\.Tests/bin/Release/netcoreapp2\.2/
 
 tests/Phema\.Routing\.Tests/bin/Release/netcoreapp2\.2/
+
+Phema\.Routing\.sln\.DotSettings\.user
