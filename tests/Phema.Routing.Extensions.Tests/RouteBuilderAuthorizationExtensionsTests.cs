@@ -68,6 +68,50 @@ namespace Phema.Routing.Tests
 			Assert.Null(attribute.AuthenticationSchemes);
 		}
 		
+		
+		[Fact]
+		public void AuthorizeWithMultiplePolicies()
+		{
+			var services = new ServiceCollection();
+			
+			services.AddMvcCore()
+				.AddPhemaRouting(routing =>
+					routing.AddController<TestController>("test", controller =>
+						controller.AddRoute("works", c => c.TestMethod(From.Query<string>()))
+							.Authorize("policy1", "policy2")));
+
+			var provider = services.BuildServiceProvider();
+
+			var options = provider.GetRequiredService<IOptions<PhemaRoutingConfigurationOptions>>().Value;
+			
+			var (_, actionMetadata) = Assert.Single(options.Actions);
+			
+			var filter = Assert.Single(actionMetadata.Filters)(provider);
+
+			var authorize = Assert.IsType<AuthorizeFilter>(filter);
+
+			Assert.Null(authorize.Policy);
+			Assert.Null(authorize.PolicyProvider);
+			
+			Assert.Collection(authorize.AuthorizeData,
+				data =>
+				{
+					var attribute = Assert.IsType<AuthorizeAttribute>(data);
+					
+					Assert.Null(attribute.Roles);
+					Assert.Equal("policy1", attribute.Policy);
+					Assert.Null(attribute.AuthenticationSchemes);
+				},
+				data =>
+				{
+					var attribute = Assert.IsType<AuthorizeAttribute>(data);
+					
+					Assert.Null(attribute.Roles);
+					Assert.Equal("policy2", attribute.Policy);
+					Assert.Null(attribute.AuthenticationSchemes);
+				});
+		}
+
 		[Fact]
 		public void AllowAnonymous()
 		{

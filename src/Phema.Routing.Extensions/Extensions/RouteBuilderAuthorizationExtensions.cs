@@ -1,12 +1,18 @@
+using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace Phema.Routing
 {
 	public static class RouteBuilderAuthorizationExtensions
 	{
-		public static IRouteBuilder Authorize(this IRouteBuilder builder, string policy = null)
+		public static IRouteBuilder Authorize(this IRouteBuilder builder, params string[] policies)
 		{
-			return builder.AddFilter(new AuthorizeFilter(policy));
+			var attributes = policies.Any()
+				? policies.Select(policy => new AuthorizeAttribute(policy))
+				: new[] { new AuthorizeAttribute() };
+			
+			return builder.AddFilter(new AuthorizeFilter(attributes));
 		}
 
 		public static IRouteBuilder AllowAnonymous(this IRouteBuilder builder)
