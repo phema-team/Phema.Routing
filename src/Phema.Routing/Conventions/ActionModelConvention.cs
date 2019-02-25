@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 
@@ -7,9 +9,9 @@ namespace Phema.Routing
 	internal sealed class ActionModelConvention : IActionModelConvention
 	{
 		private readonly IServiceProvider provider;
-		private readonly PhemaRoutingConfigurationOptions options;
+		private readonly PhemaConfigurationOptions options;
 
-		public ActionModelConvention(IServiceProvider provider, PhemaRoutingConfigurationOptions options)
+		public ActionModelConvention(IServiceProvider provider, PhemaConfigurationOptions options)
 		{
 			this.options = options;
 			this.provider = provider;
@@ -17,7 +19,8 @@ namespace Phema.Routing
 
 		public void Apply(ActionModel action)
 		{
-			var metadata = options.Actions[action.ActionMethod];
+			if (!options.Actions.TryGetValue(action.ActionMethod, out var metadata))
+				return;
 
 			var model = new SelectorModel
 			{
@@ -31,17 +34,18 @@ namespace Phema.Routing
 			};
 
 			foreach (var constraint in metadata.Constraints)
-			{
 				model.ActionConstraints.Add(constraint(provider));
-			}
 
 			foreach (var filter in metadata.Filters)
-			{
 				action.Filters.Add(filter(provider));
-			}
-			
-			action.Selectors.Clear();
-			action.Selectors.Add(model);
+
+
+			var conventions = action.Selectors.Where(s => s.AttributeRouteModel == null).ToList();
+
+			foreach (var convention in conventions)
+				action.Selectors.Remove(convention);
+				
+			action.Selectors.Insert(0, model);
 		}
 	}
 }

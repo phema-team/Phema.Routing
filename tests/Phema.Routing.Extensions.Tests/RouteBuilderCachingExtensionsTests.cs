@@ -20,7 +20,7 @@ namespace Phema.Routing.Tests
 
 			var provider = services.BuildServiceProvider();
 
-			var options = provider.GetRequiredService<IOptions<PhemaRoutingConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<PhemaConfigurationOptions>>().Value;
 			
 			var (_, actionMetadata) = Assert.Single(options.Actions);
 			var filter = Assert.Single(actionMetadata.Filters)(provider);
@@ -52,7 +52,7 @@ namespace Phema.Routing.Tests
 
 			var provider = services.BuildServiceProvider();
 
-			var options = provider.GetRequiredService<IOptions<PhemaRoutingConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<PhemaConfigurationOptions>>().Value;
 			
 			var (_, actionMetadata) = Assert.Single(options.Actions);
 			var filter = Assert.Single(actionMetadata.Filters)(provider);

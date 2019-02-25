@@ -5,21 +5,20 @@ namespace Phema.Routing
 {
 	internal sealed class ParameterModelConvention : IParameterModelConvention
 	{
-		private readonly PhemaRoutingConfigurationOptions options;
+		private readonly PhemaConfigurationOptions options;
 
-		public ParameterModelConvention(PhemaRoutingConfigurationOptions options)
+		public ParameterModelConvention(PhemaConfigurationOptions options)
 		{
 			this.options = options;
 		}
 
 		public void Apply(ParameterModel parameter)
 		{
-			var metadata = options.Parameters[parameter.ParameterInfo];
-
+			if (!options.Parameters.TryGetValue(parameter.ParameterInfo, out var metadata))
+				return;
+			
 			if (parameter.BindingInfo == null)
-			{
 				parameter.BindingInfo = new BindingInfo();
-			}
 
 			parameter.BindingInfo.BindingSource = metadata.BindingSource;
 		}

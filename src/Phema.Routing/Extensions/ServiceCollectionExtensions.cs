@@ -8,28 +8,32 @@ namespace Phema.Routing
 {
 	public static class RoutingExtensions
 	{
-		public static IMvcCoreBuilder AddPhemaRouting(this IMvcCoreBuilder builder, Action<IRoutingBuilder> action)
+		public static IMvcCoreBuilder AddPhemaRouting(
+			this IMvcCoreBuilder builder,
+			Action<IRoutingBuilder> routing)
 		{
-			AddPhemaRoutingCore(builder.Services, action);
+			AddPhemaRoutingCore(builder.Services, routing);
 
 			return builder;
 		}
 
-		public static IMvcBuilder AddPhemaRouting(this IMvcBuilder builder, Action<IRoutingBuilder> action)
+		public static IMvcBuilder AddPhemaRouting(
+			this IMvcBuilder builder,
+			Action<IRoutingBuilder> routing)
 		{
-			AddPhemaRoutingCore(builder.Services, action);
+			AddPhemaRoutingCore(builder.Services, routing);
 
 			return builder;
 		}
 
-		private static void AddPhemaRoutingCore(IServiceCollection services, Action<IRoutingBuilder> action)
+		private static void AddPhemaRoutingCore(IServiceCollection services, Action<IRoutingBuilder> routing)
 		{
-			if (!services.Any(x => x.ImplementationType == typeof(PhemaRoutingMvcOptionsPostConfiguration)))
+			if (!services.Any(x => x.ImplementationType == typeof(PhemaMvcOptionsPostConfiguration)))
 			{
-				services.AddSingleton<IPostConfigureOptions<MvcOptions>, PhemaRoutingMvcOptionsPostConfiguration>();
+				services.AddSingleton<IPostConfigureOptions<MvcOptions>, PhemaMvcOptionsPostConfiguration>();
 			}
 
-			action(new RoutingBuilder(services));
+			routing(new RoutingBuilder(services));
 		}
 	}
 }
