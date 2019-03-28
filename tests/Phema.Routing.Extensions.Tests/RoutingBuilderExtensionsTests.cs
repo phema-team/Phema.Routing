@@ -18,13 +18,13 @@ namespace Phema.Routing.Tests
 		public void AddRouteExtensionAddsEmptyRouteTemplate()
 		{
 			services.AddMvcCore()
-				.AddPhemaRouting(routing =>
+				.AddRouting(routing =>
 					routing.AddController<TestController>(controller => {}));
 
 			var provider = services.BuildServiceProvider();
 
 			var controllertype = typeof(TestController);
-			var options = provider.GetRequiredService<IOptions<PhemaConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<RoutingOptions>>().Value;
 
 			var (controllerTypeInfo, controllerMetadata) = Assert.Single(options.Controllers);
 			Assert.Equal(controllertype.GetTypeInfo(), controllerTypeInfo);

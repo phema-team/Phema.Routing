@@ -14,14 +14,14 @@ namespace Phema.Routing.Tests
 			var services = new ServiceCollection();
 			
 			services.AddMvcCore()
-				.AddPhemaRouting(routing =>
+				.AddRouting(routing =>
 					routing.AddController<TestController>("test", controller =>
 						controller.AddRoute("works", c => c.TestMethod(From.Query<string>()))
 							.Authorize()));
 
 			var provider = services.BuildServiceProvider();
 
-			var options = provider.GetRequiredService<IOptions<PhemaConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<RoutingOptions>>().Value;
 			
 			var (_, actionMetadata) = Assert.Single(options.Actions);
 			var filter = Assert.Single(actionMetadata.Filters)(provider);
@@ -44,14 +44,14 @@ namespace Phema.Routing.Tests
 			var services = new ServiceCollection();
 			
 			services.AddMvcCore()
-				.AddPhemaRouting(routing =>
+				.AddRouting(routing =>
 					routing.AddController<TestController>("test", controller =>
 						controller.AddRoute("works", c => c.TestMethod(From.Query<string>()))
 							.Authorize("policy")));
 
 			var provider = services.BuildServiceProvider();
 
-			var options = provider.GetRequiredService<IOptions<PhemaConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<RoutingOptions>>().Value;
 			
 			var (_, actionMetadata) = Assert.Single(options.Actions);
 			var filter = Assert.Single(actionMetadata.Filters)(provider);
@@ -75,14 +75,14 @@ namespace Phema.Routing.Tests
 			var services = new ServiceCollection();
 			
 			services.AddMvcCore()
-				.AddPhemaRouting(routing =>
+				.AddRouting(routing =>
 					routing.AddController<TestController>("test", controller =>
 						controller.AddRoute("works", c => c.TestMethod(From.Query<string>()))
 							.Authorize("policy1", "policy2")));
 
 			var provider = services.BuildServiceProvider();
 
-			var options = provider.GetRequiredService<IOptions<PhemaConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<RoutingOptions>>().Value;
 			
 			var (_, actionMetadata) = Assert.Single(options.Actions);
 			
@@ -118,14 +118,14 @@ namespace Phema.Routing.Tests
 			var services = new ServiceCollection();
 			
 			services.AddMvcCore()
-				.AddPhemaRouting(routing =>
+				.AddRouting(routing =>
 					routing.AddController<TestController>("test", controller =>
 						controller.AddRoute("works", c => c.TestMethod(From.Query<string>()))
 							.AllowAnonymous()));
 
 			var provider = services.BuildServiceProvider();
 
-			var options = provider.GetRequiredService<IOptions<PhemaConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<RoutingOptions>>().Value;
 			
 			var (_, actionMetadata) = Assert.Single(options.Actions);
 			var filter = Assert.Single(actionMetadata.Filters)(provider);

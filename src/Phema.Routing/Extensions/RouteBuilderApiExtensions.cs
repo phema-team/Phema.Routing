@@ -8,12 +8,12 @@ namespace Phema.Routing
 			int statusCode,
 			params string[] contentTypes)
 		{
-			return builder.AddFilter(new PhemaApiResponseMetadataProvider(typeof(TProduces), statusCode, contentTypes));
+			return builder.AddFilter(new ApiResponseMetadataProvider(typeof(TProduces), statusCode, contentTypes));
 		}
 
 		public static IRouteBuilder Consumes(this IRouteBuilder builder, params string[] contentTypes)
 		{
-			return builder.AddFilter(new PhemaApiRequestMetadataProvider(contentTypes));
+			return builder.AddFilter(new ApiRequestMetadataProvider(contentTypes));
 		}
 	}
 }

@@ -1,14 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netcoreapp2.2</TargetFramework>
+		<TargetFramework>netcoreapp3.0</TargetFramework>
 		<RootNamespace>Phema.Routing</RootNamespace>
-		<LangVersion>7.3</LangVersion>
-		<Version>2.0.3</Version>
+		<LangVersion>8</LangVersion>
+		<Version>3.0.0-preview3.0.0</Version>
+		<Authors>sergeyshaykhullin</Authors>
+		<Description>C# typed routing library for ASP.NET Core</Description>
+		<PackageTags>.NET Core;ASP.NET Core;Routing</PackageTags>
+		<PackageProjectUrl>https://github.com/sergeyshaykhullin/Phema.Routing</PackageProjectUrl>
+		<PackageIconUrl>https://raw.githubusercontent.com/sergeyshaykhullin/Phema.Routing/master/icon.png</PackageIconUrl>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/sergeyshaykhullin/Phema.Routing</RepositoryUrl>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Phema.Routing.Core\Phema.Routing.Core.csproj" />
+	  <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.2" />
 	</ItemGroup>
 
 </Project>

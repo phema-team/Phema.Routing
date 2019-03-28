@@ -5,12 +5,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Phema.Routing
 {
-	internal sealed class PhemaMvcOptionsPostConfiguration : IPostConfigureOptions<MvcOptions>
+	internal sealed class RoutingPostConfigure : IPostConfigureOptions<MvcOptions>
 	{
-		private readonly PhemaConfigurationOptions options;
+		private readonly RoutingOptions options;
 		private readonly IServiceProvider provider;
 
-		public PhemaMvcOptionsPostConfiguration(IServiceProvider provider, IOptions<PhemaConfigurationOptions> options)
+		public RoutingPostConfigure(IServiceProvider provider, IOptions<RoutingOptions> options)
 		{
 			this.provider = provider;
 			this.options = options.Value;

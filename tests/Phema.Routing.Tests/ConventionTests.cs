@@ -26,11 +26,11 @@ namespace Phema.Routing.Tests
 
 			var controllerTypeInfo = typeof(TestController).GetTypeInfo();
 			
-			var convention = new ControllerModelConvention(provider, new PhemaConfigurationOptions
+			var convention = new ControllerModelConvention(provider, new RoutingOptions
 			{
 				Controllers =
 				{
-					[controllerTypeInfo] = new RouteMetadata("test")
+					[controllerTypeInfo] = new RouteDeclaration("test")
 					{
 						Name = "name",
 						Filters = { sp => new RequireHttpsAttribute()},
@@ -68,11 +68,11 @@ namespace Phema.Routing.Tests
 
 			var actionMethodInfo = typeof(TestController).GetMethod(nameof(TestController.TestMethod));
 			
-			var convention = new ActionModelConvention(provider, new PhemaConfigurationOptions
+			var convention = new ActionModelConvention(provider, new RoutingOptions
 			{
 				Actions =
 				{
-					[actionMethodInfo] = new RouteMetadata("test")
+					[actionMethodInfo] = new RouteDeclaration("test")
 					{
 						Name = "name",
 						Filters = { sp => new RequireHttpsAttribute()},
@@ -107,11 +107,11 @@ namespace Phema.Routing.Tests
 		{
 			var parameterInfo = typeof(TestController).GetMethod(nameof(TestController.TestMethod)).GetParameters().Single();
 			
-			var convention = new ParameterModelConvention(new PhemaConfigurationOptions
+			var convention = new ParameterModelConvention(new RoutingOptions
 			{
 				Parameters =
 				{
-					[parameterInfo] = new ParameterMetadata(BindingSource.Body)
+					[parameterInfo] = new ParameterDeclaration(BindingSource.Body)
 				}
 			});
 

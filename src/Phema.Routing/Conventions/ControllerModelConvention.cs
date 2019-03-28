@@ -9,9 +9,9 @@ namespace Phema.Routing
 	internal sealed class ControllerModelConvention : IControllerModelConvention
 	{
 		private readonly IServiceProvider provider;
-		private readonly PhemaConfigurationOptions options;
+		private readonly RoutingOptions options;
 
-		public ControllerModelConvention(IServiceProvider provider, PhemaConfigurationOptions options)
+		public ControllerModelConvention(IServiceProvider provider, RoutingOptions options)
 		{
 			this.options = options;
 			this.provider = provider;
@@ -20,7 +20,9 @@ namespace Phema.Routing
 		public void Apply(ControllerModel controller)
 		{
 			if (!options.Controllers.TryGetValue(controller.ControllerType, out var metadata))
+			{
 				return;
+			}
 
 			var model = new SelectorModel
 			{
@@ -34,15 +36,21 @@ namespace Phema.Routing
 			};
 
 			foreach (var constraint in metadata.Constraints)
+			{
 				model.ActionConstraints.Add(constraint(provider));
+			}
 
 			foreach (var filter in metadata.Filters)
+			{
 				controller.Filters.Add(filter(provider));
+			}
 
 			var conventions = controller.Selectors.Where(s => s.AttributeRouteModel == null).ToList();
 
 			foreach (var convention in conventions)
+			{
 				controller.Selectors.Remove(convention);
+			}
 			
 			controller.Selectors.Insert(0, model);
 		}

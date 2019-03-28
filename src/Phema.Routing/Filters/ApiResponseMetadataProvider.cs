@@ -5,22 +5,22 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace Phema.Routing
 {
-	internal sealed class PhemaApiResponseMetadataProvider : IApiResponseMetadataProvider
+	internal sealed class ApiResponseMetadataProvider : IApiResponseMetadataProvider
 	{
 		private readonly string[] contentTypes;
 
-		public PhemaApiResponseMetadataProvider(Type type, int statusCode, string[] contentTypes)
+		public ApiResponseMetadataProvider(Type type, int statusCode, string[] contentTypes)
 		{
 			this.contentTypes = contentTypes;
 			Type = type;
 			StatusCode = statusCode;
 		}
 		
-		public void SetContentTypes(MediaTypeCollection contentTypes)
+		public void SetContentTypes(MediaTypeCollection mediaTypes)
 		{
-			foreach (var contentType in this.contentTypes)
+			foreach (var contentType in contentTypes)
 			{
-				contentTypes.Add(contentType);
+				mediaTypes.Add(contentType);
 			}
 		}
 

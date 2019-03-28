@@ -10,29 +10,25 @@ namespace Phema.Routing
 	{
 		private static IDictionary<string, BindingSource> BindingSourceMap { get; }
 
-		public static MethodInfo AddRouteParameters<TController, TResult>(
-			IDictionary<ParameterInfo, ParameterMetadata> parameters,
+		public static MethodCallExpression GetMethodCallExpression<TController, TResult>(
 			Expression<Func<TController, TResult>> expression)
 		{
-			var callExpression = (MethodCallExpression)expression.Body;
-			AddRouteParameters(parameters, callExpression);
-			return callExpression.Method;
+			return (MethodCallExpression) expression.Body;
 		}
 
-		private static void AddRouteParameters(
-			IDictionary<ParameterInfo, ParameterMetadata> parameters,
+		public static IEnumerable<(ParameterInfo info, ParameterDeclaration declaration)> GetRouteParameters(
 			MethodCallExpression expression)
 		{
 			var methodParameters = expression.Method.GetParameters();
 
-			for (var i = 0; i < methodParameters.Length; i++)
+			for (var index = 0; index < methodParameters.Length; index++)
 			{
-				var argument = (MethodCallExpression)expression.Arguments[i];
-				var methodParameter = methodParameters[i];
+				var argument = (MethodCallExpression) expression.Arguments[index];
 
-				var parameterMetadata = new ParameterMetadata(BindingSourceMap[argument.Method.Name]);
-				
-				parameters.Add(methodParameter, parameterMetadata);
+				var info = methodParameters[index];
+				var declaration = new ParameterDeclaration(BindingSourceMap[argument.Method.Name]);
+
+				yield return (info, declaration);
 			}
 		}
 

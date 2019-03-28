@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Reflection;
 
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc.Internal;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,33 +22,33 @@ namespace Phema.Routing.Tests
 		public void AddRoutingAddsPostConfiguration()
 		{
 			services.AddMvcCore()
-				.AddPhemaRouting(routing => {});
+				.AddRouting(routing => {});
 
-			Assert.Single(services.Where(x => x.ImplementationType == typeof(PhemaMvcOptionsPostConfiguration)));
+			Assert.Single(services.Where(x => x.ImplementationType == typeof(RoutingPostConfigure)));
 		}
 		
 		[Fact]
 		public void AddRoutingAddsPostConfigurationOnce()
 		{
 			services.AddMvcCore()
-				.AddPhemaRouting(routing => {})
-				.AddPhemaRouting(routing => {});
+				.AddRouting(routing => {})
+				.AddRouting(routing => {});
 
-			Assert.Single(services.Where(x => x.ImplementationType == typeof(PhemaMvcOptionsPostConfiguration)));
+			Assert.Single(services.Where(x => x.ImplementationType == typeof(RoutingPostConfigure)));
 		}
 		
 		[Fact]
 		public void AddRoutingControllerActionAndParameter()
 		{
 			services.AddMvcCore()
-				.AddPhemaRouting(routing =>
+				.AddRouting(routing =>
 					routing.AddController<TestController>("test", controller =>
 						controller.AddRoute("works", c => c.TestMethod(From.Query<string>()))));
 
 			var provider = services.BuildServiceProvider();
 
 			var controllertype = typeof(TestController);
-			var options = provider.GetRequiredService<IOptions<PhemaConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<RoutingOptions>>().Value;
 			
 			var (controllerTypeInfo, controllerMetadata) = Assert.Single(options.Controllers);
 			Assert.Equal(controllertype.GetTypeInfo(), controllerTypeInfo);
@@ -68,14 +67,14 @@ namespace Phema.Routing.Tests
 		public void AddActionName()
 		{
 			services.AddMvcCore()
-				.AddPhemaRouting(routing =>
+				.AddRouting(routing =>
 					routing.AddController<TestController>("test", controller =>
 						controller.AddRoute("works", c => c.TestMethod(From.Query<string>()))
 							.WithName("name")));
 
 			var provider = services.BuildServiceProvider();
 
-			var options = provider.GetRequiredService<IOptions<PhemaConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<RoutingOptions>>().Value;
 			
 			var (_, actionMetadata) = Assert.Single(options.Actions);
 			Assert.Equal("name", actionMetadata.Name);
@@ -85,13 +84,13 @@ namespace Phema.Routing.Tests
 		public void AddControllerName()
 		{
 			services.AddMvcCore()
-				.AddPhemaRouting(routing =>
+				.AddRouting(routing =>
 					routing.AddController<TestController>("test", controller => {})
 						.WithName("name"));
 
 			var provider = services.BuildServiceProvider();
 
-			var options = provider.GetRequiredService<IOptions<PhemaConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<RoutingOptions>>().Value;
 			
 			var (_, actionMetadata) = Assert.Single(options.Controllers);
 			Assert.Equal("name", actionMetadata.Name);
@@ -101,14 +100,14 @@ namespace Phema.Routing.Tests
 		public void AddActionConstraint()
 		{
 			services.AddMvcCore()
-				.AddPhemaRouting(routing =>
+				.AddRouting(routing =>
 					routing.AddController<TestController>("test", controller =>
 						controller.AddRoute("works", c => c.TestMethod(From.Query<string>()))
 							.AddConstraint(sp => new HttpMethodActionConstraint(new[] { "method" }))));
 
 			var provider = services.BuildServiceProvider();
 
-			var options = provider.GetRequiredService<IOptions<PhemaConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<RoutingOptions>>().Value;
 			
 			var (_, actionMetadata) = Assert.Single(options.Actions);
 			var constraint = Assert.Single(actionMetadata.Constraints)(provider);
@@ -122,13 +121,13 @@ namespace Phema.Routing.Tests
 		public void AddControllerConstraint()
 		{
 			services.AddMvcCore()
-				.AddPhemaRouting(routing =>
+				.AddRouting(routing =>
 					routing.AddController<TestController>("test", controller => {})
 						.AddConstraint(sp => new HttpMethodActionConstraint(new[] { "method" })));
 
 			var provider = services.BuildServiceProvider();
 
-			var options = provider.GetRequiredService<IOptions<PhemaConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<RoutingOptions>>().Value;
 			
 			var (_, actionMetadata) = Assert.Single(options.Controllers);
 			var constraint = Assert.Single(actionMetadata.Constraints)(provider);
@@ -142,14 +141,14 @@ namespace Phema.Routing.Tests
 		public void AddActionFilter()
 		{
 			services.AddMvcCore()
-				.AddPhemaRouting(routing =>
+				.AddRouting(routing =>
 					routing.AddController<TestController>("test", controller =>
 						controller.AddRoute("works", c => c.TestMethod(From.Query<string>()))
 							.AddFilter(sp => new AllowAnonymousFilter())));
 
 			var provider = services.BuildServiceProvider();
 
-			var options = provider.GetRequiredService<IOptions<PhemaConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<RoutingOptions>>().Value;
 			
 			var (_, actionMetadata) = Assert.Single(options.Actions);
 			var filter = Assert.Single(actionMetadata.Filters)(provider);
@@ -161,13 +160,13 @@ namespace Phema.Routing.Tests
 		public void AddControllerFilter()
 		{
 			services.AddMvcCore()
-				.AddPhemaRouting(routing =>
+				.AddRouting(routing =>
 					routing.AddController<TestController>("test", controller => {})
 						.AddFilter(sp => new AllowAnonymousFilter()));
 
 			var provider = services.BuildServiceProvider();
 
-			var options = provider.GetRequiredService<IOptions<PhemaConfigurationOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<RoutingOptions>>().Value;
 			
 			var (_, actionMetadata) = Assert.Single(options.Controllers);
 			var filter = Assert.Single(actionMetadata.Filters)(provider);

@@ -4,30 +4,39 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Phema.Routing
 {
+	public interface IRouteBuilder
+	{
+		IRouteBuilder AddFilter(Func<IServiceProvider, IFilterMetadata> selector);
+
+		IRouteBuilder AddConstraint(Func<IServiceProvider, IActionConstraintMetadata> selector);
+
+		IRouteBuilder WithName(string name);
+	}
+	
 	internal sealed class RouteBuilder : IRouteBuilder
 	{
-		private readonly RouteMetadata metadata;
+		private readonly RouteDeclaration declaration;
 
-		public RouteBuilder(RouteMetadata metadata)
+		public RouteBuilder(RouteDeclaration declaration)
 		{
-			this.metadata = metadata;
+			this.declaration = declaration;
 		}
 
 		public IRouteBuilder AddFilter(Func<IServiceProvider, IFilterMetadata> selector)
 		{
-			metadata.Filters.Add(selector);
+			declaration.Filters.Add(selector);
 			return this;
 		}
 		
 		public IRouteBuilder AddConstraint(Func<IServiceProvider, IActionConstraintMetadata> selector)
 		{
-			metadata.Constraints.Add(selector);
+			declaration.Constraints.Add(selector);
 			return this;
 		}
 
 		public IRouteBuilder WithName(string name)
 		{
-			metadata.Name = name;
+			declaration.Name = name;
 			return this;
 		}
 	}
