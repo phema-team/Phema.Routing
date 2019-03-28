@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.Mvc.Internal;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
 
 
@@ -20,32 +19,32 @@ namespace Phema.Routing
 		
 		public static IRouteBuilder HttpHead(this IRouteBuilder builder)
 		{
-			return builder.AddConstraint(new HttpMethodActionConstraint(new[] { HttpMethods.Head }));
+			return builder.AddConstraint(new HttpMethodActionConstraint(HttpMethods.Head));
 		}
 		
 		public static IRouteBuilder HttpGet(this IRouteBuilder builder)
 		{
-			return builder.AddConstraint(new HttpMethodActionConstraint(new[] { HttpMethods.Get }));
+			return builder.AddConstraint(new HttpMethodActionConstraint(HttpMethods.Get));
 		}
 		
 		public static IRouteBuilder HttpGetOrHead(this IRouteBuilder builder)
 		{
-			return builder.AddConstraint(new HttpMethodActionConstraint(new[] { HttpMethods.Head, HttpMethods.Get }));
+			return builder.AddConstraint(new HttpMethodActionConstraint(HttpMethods.Head, HttpMethods.Get));
 		}
 
 		public static IRouteBuilder HttpPost(this IRouteBuilder builder)
 		{
-			return builder.AddConstraint(new HttpMethodActionConstraint(new[] { HttpMethods.Post }));
+			return builder.AddConstraint(new HttpMethodActionConstraint(HttpMethods.Post));
 		}
 
 		public static IRouteBuilder HttpPut(this IRouteBuilder builder)
 		{
-			return builder.AddConstraint(new HttpMethodActionConstraint(new[] { HttpMethods.Put }));
+			return builder.AddConstraint(new HttpMethodActionConstraint(HttpMethods.Put));
 		}
 
 		public static IRouteBuilder HttpDelete(this IRouteBuilder builder)
 		{
-			return builder.AddConstraint(new HttpMethodActionConstraint(new[] { HttpMethods.Delete }));
+			return builder.AddConstraint(new HttpMethodActionConstraint(HttpMethods.Delete));
 		}
 	}
 }

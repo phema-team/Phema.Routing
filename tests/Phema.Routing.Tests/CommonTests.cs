@@ -2,7 +2,6 @@ using System.Linq;
 using System.Reflection;
 
 using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.AspNetCore.Mvc.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Xunit;
@@ -26,17 +25,7 @@ namespace Phema.Routing.Tests
 
 			Assert.Single(services.Where(x => x.ImplementationType == typeof(RoutingPostConfigure)));
 		}
-		
-		[Fact]
-		public void AddRoutingAddsPostConfigurationOnce()
-		{
-			services.AddMvcCore()
-				.AddRouting(routing => {})
-				.AddRouting(routing => {});
 
-			Assert.Single(services.Where(x => x.ImplementationType == typeof(RoutingPostConfigure)));
-		}
-		
 		[Fact]
 		public void AddRoutingControllerActionAndParameter()
 		{

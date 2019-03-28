@@ -76,3 +76,7 @@ tests/Phema\.Routing\.Extensions\.Tests/bin/Release/netcoreapp3\.0/
 tests/Phema\.Routing\.Tests/bin/Release/netcoreapp3\.0/
 
 tests/Phema\.Routing\.Extensions\.Tests/bin/Release/netcoreapp3\.0/
+
+examples/AspNetCoreExample/bin/Release/netcoreapp3\.0/
+
+examples/AspNetCoreExample/obj/
