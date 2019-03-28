@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.0</TargetFramework>
@@ -12,7 +12,10 @@
 		<PackageIconUrl>https://raw.githubusercontent.com/sergeyshaykhullin/Phema.Routing/master/icon.png</PackageIconUrl>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/sergeyshaykhullin/Phema.Routing</RepositoryUrl>
-		<OutputType>Library</OutputType>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.2" />
+	</ItemGroup>
 
 </Project>
