@@ -1,7 +1,6 @@
 # Phema.Routing
 
 [![Nuget](https://img.shields.io/nuget/v/Phema.Routing.svg)](https://www.nuget.org/packages/Phema.Routing)
-[![Nuget](https://img.shields.io/nuget/vpre/Phema.Routing.svg)](https://www.nuget.org/packages/Phema.Routing)
 
 C# strongly typed routing library for `ASP.NET Core` with built-in `From.*`, `ApiExplorer`, `Authorization` and `Caching` support
 
@@ -53,7 +52,7 @@ services.AddMvcCore()
     routing.AddController<TestController>("controller-route-part",
       controller =>
         controller.AddRoute("action-route-part", c => c.TestMethod())
-          // Add constraint
+          // Add constraints
           .HttpGet()
           .Authorize());
 ```
