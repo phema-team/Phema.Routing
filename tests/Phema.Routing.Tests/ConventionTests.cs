@@ -110,7 +110,7 @@ namespace Phema.Routing.Tests
 			{
 				Parameters =
 				{
-					[parameterInfo] = new ParameterDeclaration(BindingSource.Body, "name")
+					[parameterInfo] = new ParameterDeclaration(BindingSource.Query, "name")
 				}
 			});
 
@@ -119,8 +119,8 @@ namespace Phema.Routing.Tests
 			convention.Apply(model);
 
 			Assert.Empty(model.Attributes);
-			Assert.Equal(BindingSource.Body, model.BindingInfo.BindingSource);
-			Assert.Equal("name", model.ParameterName);
+			Assert.Equal(BindingSource.Query, model.BindingInfo.BindingSource);
+			Assert.Equal("name", model.BindingInfo.BinderModelName);
 			Assert.Equal(typeof(string), model.ParameterInfo.ParameterType);
 			Assert.Empty(model.Properties);
 		}
