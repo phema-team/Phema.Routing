@@ -23,7 +23,7 @@ namespace Phema.Routing.Tests
 			services.AddMvcCore()
 				.AddRouting(routing => {});
 
-			Assert.Single(services.Where(x => x.ImplementationType == typeof(RoutingPostConfigure)));
+			Assert.Single(services.Where(x => x.ImplementationType == typeof(RoutingPostConfigureOptions)));
 		}
 
 		[Fact]
@@ -59,7 +59,7 @@ namespace Phema.Routing.Tests
 				.AddRouting(routing =>
 					routing.AddController<TestController>("test", controller =>
 						controller.AddRoute("works", c => c.TestMethod(From.Query<string>()))
-							.WithName("name")));
+							.Named("name")));
 
 			var provider = services.BuildServiceProvider();
 
@@ -75,7 +75,7 @@ namespace Phema.Routing.Tests
 			services.AddMvcCore()
 				.AddRouting(routing =>
 					routing.AddController<TestController>("test", controller => {})
-						.WithName("name"));
+						.Named("name"));
 
 			var provider = services.BuildServiceProvider();
 

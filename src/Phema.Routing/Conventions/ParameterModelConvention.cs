@@ -24,7 +24,14 @@ namespace Phema.Routing
 				parameter.BindingInfo = new BindingInfo();
 			}
 
+			if (metadata.ModelName != null)
+			{
+				parameter.BindingInfo.BinderModelName = metadata.ModelName;
+			}
+
 			parameter.BindingInfo.BindingSource = metadata.BindingSource;
+
+			// TODO: parameter.BindingInfo.BinderType = metadata.BinderType;
 		}
 	}
 }

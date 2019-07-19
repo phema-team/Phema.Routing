@@ -6,11 +6,11 @@ namespace Phema.Routing
 {
 	public interface IControllerBuilder<TController>
 	{
-		IRouteBuilder AddRoute<TResult>(
-			string template, 
+		IControllerActionRouteBuilder AddRoute<TResult>(
+			string template,
 			Expression<Func<TController, TResult>> expression);
 	}
-	
+
 	internal sealed class ControllerBuilder<TController> : IControllerBuilder<TController>
 	{
 		private readonly IServiceCollection services;
@@ -20,25 +20,25 @@ namespace Phema.Routing
 			this.services = services;
 		}
 
-		public IRouteBuilder AddRoute<TResult>(
-			string template, 
+		public IControllerActionRouteBuilder AddRoute<TResult>(
+			string template,
 			Expression<Func<TController, TResult>> expression)
 		{
 			var declaration = new RouteDeclaration(template);
 
 			services.Configure<RoutingOptions>(options =>
 			{
-				var call = RouteHelper.GetMethodCallExpression(expression);
+				var methodCall = RouteBindingSourceHelper.GetInnerMethodCallExpression(expression);
 
-				foreach (var (info, parameter) in RouteHelper.GetRouteParameters(call))
+				foreach (var (info, parameter) in RouteBindingSourceHelper.GetRouteParameters(methodCall))
 				{
 					options.Parameters.Add(info, parameter);
 				}
-				
-				options.Actions.Add(call.Method, declaration);
+
+				options.Actions.Add(methodCall.Method, declaration);
 			});
 
-			return new RouteBuilder(declaration);
+			return new ControllerActionRouteBuilder(declaration);
 		}
 	}
 }

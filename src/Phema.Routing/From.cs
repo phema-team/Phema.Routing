@@ -21,12 +21,30 @@ namespace Phema.Routing
 		{
 			throw new NotImplementedException();
 		}
+		
+		/// <summary>
+		/// To set named BindingSource.Route
+		/// </summary>
+		/// <typeparam name="TValue"></typeparam>
+		public static TValue Route<TValue>(string name)
+		{
+			throw new NotImplementedException();
+		}
 
 		/// <summary>
 		/// To set BindingSource.Header
 		/// </summary>
 		/// <typeparam name="TValue"></typeparam>
 		public static TValue Header<TValue>()
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// To set named BindingSource.Header
+		/// </summary>
+		/// <typeparam name="TValue"></typeparam>
+		public static TValue Header<TValue>(string name)
 		{
 			throw new NotImplementedException();
 		}
@@ -50,10 +68,28 @@ namespace Phema.Routing
 		}
 
 		/// <summary>
+		/// To set BindingSource.Query with named parameter
+		/// </summary>
+		/// <typeparam name="TValue"></typeparam>
+		public static TValue Query<TValue>(string name)
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
 		/// To set BindingSource.Form
 		/// </summary>
 		/// <typeparam name="TValue"></typeparam>
 		public static TValue Form<TValue>()
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// To set named BindingSource.Form
+		/// </summary>
+		/// <typeparam name="TValue"></typeparam>
+		public static TValue Form<TValue>(string name)
 		{
 			throw new NotImplementedException();
 		}
@@ -66,7 +102,7 @@ namespace Phema.Routing
 		{
 			throw new NotImplementedException();
 		}
-		
+
 		/// <summary>
 		/// To set BindingSource.ModelBinding
 		/// </summary>
@@ -75,7 +111,7 @@ namespace Phema.Routing
 		{
 			throw new NotImplementedException();
 		}
-		
+
 		/// <summary>
 		/// To set BindingSource.Special
 		/// </summary>
@@ -84,7 +120,7 @@ namespace Phema.Routing
 		{
 			throw new NotImplementedException();
 		}
-		
+
 		/// <summary>
 		/// To set BindingSource.FormFile
 		/// </summary>

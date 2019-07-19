@@ -6,9 +6,11 @@ namespace Phema.Routing
 {
 	public interface IRoutingBuilder
 	{
-		IRouteBuilder AddController<TController>(string template, Action<IControllerBuilder<TController>> controller);
+		IControllerRouteBuilder AddController<TController>(
+			string template,
+			Action<IControllerBuilder<TController>> controller);
 	}
-	
+
 	internal sealed class RoutingBuilder : IRoutingBuilder
 	{
 		private readonly IServiceCollection services;
@@ -18,7 +20,7 @@ namespace Phema.Routing
 			this.services = services;
 		}
 
-		public IRouteBuilder AddController<TController>(
+		public IControllerRouteBuilder AddController<TController>(
 			string template,
 			Action<IControllerBuilder<TController>> controller)
 		{
@@ -29,7 +31,7 @@ namespace Phema.Routing
 
 			controller(new ControllerBuilder<TController>(services));
 
-			return new RouteBuilder(declaration);
+			return new ControllerRouteBuilder(declaration);
 		}
 	}
 }

@@ -2,7 +2,7 @@
 
 [![Build Status](https://cloud.drone.io/api/badges/phema-team/Phema.Routing/status.svg)](https://cloud.drone.io/phema-team/Phema.Routing) [![Nuget](https://img.shields.io/nuget/v/Phema.Routing.svg)](https://www.nuget.org/packages/Phema.Routing)
 
-C# strongly typed routing library for `ASP.NET Core` with built-in `From.*`, `ApiExplorer`, `Authorization` and `Caching` support
+C# strongly typed routing library for `ASP.NET Core` built on top of `MVC Model conventions` with built-in `From.*`, `ApiExplorer`, `Authorization` and `Caching` support
 
 ## Usage
 
@@ -83,3 +83,9 @@ services.AddMvcCore()
 - To inject arguments from DI use `From.Services` method
 - `From.*` is matches `[From*]` attributes, so no more attributed parameters polluting your controller actions
 - To use `From.Body` don't forget to add mvc formatters using `AddMvcCore`
+
+### Features
+
+- Flexible constraint and filter configuration
+- Extension methods for authorization, caching, api documentation
+- Selection BindingSources and named parameters (constant names only)

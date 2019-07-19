@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Phema.Routing
 {
-	public static class RoutingExtensions
+	public static class MvcBuilderExtensions
 	{
 		public static IMvcCoreBuilder AddRouting(
 			this IMvcCoreBuilder builder,
@@ -27,7 +27,7 @@ namespace Phema.Routing
 
 		private static void AddRouting(IServiceCollection services, Action<IRoutingBuilder> routing)
 		{
-			services.AddSingleton<IPostConfigureOptions<MvcOptions>, RoutingPostConfigure>();
+			services.AddSingleton<IPostConfigureOptions<MvcOptions>, RoutingPostConfigureOptions>();
 
 			routing(new RoutingBuilder(services));
 		}

@@ -6,18 +6,23 @@ namespace Phema.Routing
 {
 	public static class RouteBuilderAuthorizationExtensions
 	{
-		public static IRouteBuilder Authorize(this IRouteBuilder builder, params string[] policies)
+		public static TBuilder Authorize<TBuilder>(
+			this TBuilder routeBuilder,
+			params string[] policies)
+			where TBuilder : IRouteBuilder<TBuilder>
 		{
 			var attributes = policies.Any()
 				? policies.Select(policy => new AuthorizeAttribute(policy))
-				: new[] { new AuthorizeAttribute() };
-			
-			return builder.AddFilter(new AuthorizeFilter(attributes));
+				: new[] {new AuthorizeAttribute()};
+
+			return routeBuilder.AddFilter(new AuthorizeFilter(attributes));
 		}
 
-		public static IRouteBuilder AllowAnonymous(this IRouteBuilder builder)
+		public static TBuilder AllowAnonymous<TBuilder>(
+			this TBuilder routeBuilder)
+			where TBuilder : IRouteBuilder<TBuilder>
 		{
-			return builder.AddFilter(new AllowAnonymousFilter());
+			return routeBuilder.AddFilter(new AllowAnonymousFilter());
 		}
 	}
 }

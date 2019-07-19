@@ -25,13 +25,11 @@ namespace Phema.Routing
 
 			var model = new SelectorModel
 			{
-				AttributeRouteModel = declaration.Template == null
-					? null
-					: new AttributeRouteModel(
-							new RouteAttribute(declaration.Template)
-							{
-								Name = declaration.Name
-							})
+				AttributeRouteModel = new AttributeRouteModel(
+					new RouteAttribute(declaration.Template)
+					{
+						Name = declaration.Name
+					})
 			};
 
 			foreach (var constraint in declaration.Constraints)

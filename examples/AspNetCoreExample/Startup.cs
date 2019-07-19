@@ -9,7 +9,11 @@ namespace AspNetCoreExample
 	{
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddMvc(o => o.OutputFormatters.Add(new XmlSerializerOutputFormatter()))
+			services.AddMvc(o =>
+				{
+					o.EnableEndpointRouting = false;
+					o.OutputFormatters.Add(new XmlSerializerOutputFormatter());
+				})
 				.AddRouting(routing =>
 					routing.AddController<ExampleController>(controller =>
 					{
@@ -20,6 +24,12 @@ namespace AspNetCoreExample
 						controller.AddRoute("generate", c => c.GenerateString(From.Query<char>(), From.Query<int>()))
 							.HttpGet()
 							.Produces<string>(200);
+
+						controller.AddRoute("named", c => c.NamedParameter(From.Query<int>("age")))
+							.HttpGet();
+
+						controller.AddRoute("named-route/{greet}", c => c.NamedRoute(From.Route<string>("greet")))
+							.HttpGet();
 					}));
 		}
 

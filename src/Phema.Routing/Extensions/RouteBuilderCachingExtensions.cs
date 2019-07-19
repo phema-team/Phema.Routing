@@ -4,8 +4,8 @@ namespace Phema.Routing
 {
 	public static class RouteBuilderCachingExtensions
 	{
-		public static IRouteBuilder Cached(
-			this IRouteBuilder builder, 
+		public static IControllerActionRouteBuilder Cached(
+			this IControllerActionRouteBuilder routeBuilder, 
 			int duration = 30, 
 			string header = null, 
 			string profile = null,
@@ -21,7 +21,7 @@ namespace Phema.Routing
 				VaryByQueryKeys = query
 			};
 
-			return builder.AddFilter(filter);
+			return routeBuilder.AddFilter(filter);
 		}
 	}
 }

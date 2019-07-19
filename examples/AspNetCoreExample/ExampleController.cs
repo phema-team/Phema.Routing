@@ -11,5 +11,15 @@ namespace AspNetCoreExample
 		{
 			return new string(character, count);
 		}
+
+		public int NamedParameter(int number)
+		{
+			return 2 * number;
+		}
+
+		public string NamedRoute(string message)
+		{
+			return $"Hello, {message}";
+		}
 	}
 }
