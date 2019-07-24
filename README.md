@@ -4,6 +4,13 @@
 
 C# strongly typed routing library for `ASP.NET Core` built on top of `MVC Model conventions` with built-in `From.*`, `ApiExplorer`, `Authorization` and `Caching` support
 
+### Features
+
+- Flexible constraint and filter configuration
+- Extension methods for authorization, caching, api documentation
+- Selection BindingSources and named parameters (constant names only) e.g. From.Body, From.Form, From.Route etc.
+- Parameter name override e.g. From.Query<int>("id_override") `/route?id_override=12345`
+
 ## Usage
 
 ```csharp
@@ -74,7 +81,7 @@ services.AddMvcCore()
       controller =>
         controller.AddRoute("action-route-part",
             // Add parameter source
-            c => c.TestMethod(From.Query<string>()))
+            c => c.TestMethod(From.Query<string>("optional_parameter_name")))
           .HttpGet());
 ```
 
@@ -83,9 +90,3 @@ services.AddMvcCore()
 - To inject arguments from DI use `From.Services` method
 - `From.*` is matches `[From*]` attributes, so no more attributed parameters polluting your controller actions
 - To use `From.Body` don't forget to add mvc formatters using `AddMvcCore`
-
-### Features
-
-- Flexible constraint and filter configuration
-- Extension methods for authorization, caching, api documentation
-- Selection BindingSources and named parameters (constant names only)
