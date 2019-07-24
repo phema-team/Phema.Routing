@@ -8,7 +8,7 @@ C# strongly typed routing library for `ASP.NET Core` built on top of `MVC Model 
 
 - Flexible constraint and filter configuration
 - Extension methods for authorization, caching, api documentation
-- Selection BindingSources and named parameters (constant names only) e.g. From.Body, From.Form, From.Route etc.
+- Selection BindingSources and named parameters (constant names only) e.g. `From.Body`, `From.Form`, `From.Route` etc.
 - Parameter name override e.g. From.Query<int>("id_override") `/route?id_override=12345`
 
 ## Usage
