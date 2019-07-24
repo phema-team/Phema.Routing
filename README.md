@@ -33,8 +33,7 @@ services.AddMvcCore()
 ```
 
 - To add controller you need to specify `TController` and route part
-- You can remove route part: `AddController<TestController>(controller => {})`.
-- It will be an empty string (so just `/` route)
+- You can remove route part: `AddController<TestController>(controller => {})`. It will be an empty string (so just `/` route)
 
 ### Adding routes
 
@@ -59,18 +58,17 @@ services.AddMvcCore()
     routing.AddController<TestController>("controller-route-part",
       controller =>
         controller.AddRoute("action-route-part", c => c.TestMethod())
-          // Add constraints
+          // Add constraints to route
           .HttpGet()
-          .Authorize());
+          .AllowAnonymous())
+        // Authorize on controller
+       .Authorize());
 ```
 
 - You can add constraints to both: `controller` and `route` using `IRouteBuilder` returned by `AddController` or `AddRoute`
 - You can add them by using `AddFilter`/`AddConstraint` method with `IServiceProvider` parameter or extension without it
-- You can add named routes by using `WithNamed` method
-- To use predefined constraints and filters you need a `Phema.Routing.Extensions` package
-- For caching you can use `Phema.Routing.Extensions.Caching` package
+- You can add named routes by using `Named` method
 - To create custom filters and constraints you need `IFilterMetadata` or `IActionConstraintMetadata` in `Microsoft.AspNetCore.Mvc.Abstractions` package or inherit from derivatives
-- You can add `HttpGet`, `Cached`, etc. to controller's `IRouteBuilder` it means that any action inside will be `HttpGet`, `Cached`, etc.
 
 ### Adding parameters
 
@@ -87,6 +85,5 @@ services.AddMvcCore()
 
 - You can specify from wich source mvc will bind your model
 - To specify parameters you have to use `From` static class
-- To inject arguments from DI use `From.Services` method
-- `From.*` is matches `[From*]` attributes, so no more attributed parameters polluting your controller actions
-- To use `From.Body` don't forget to add mvc formatters using `AddMvcCore`
+- To inject arguments from DI use `From.Services<T>` method
+- `From.*` is matches `[From*]` attributes
