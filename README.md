@@ -10,80 +10,46 @@ C# strongly typed routing library for `ASP.NET Core` built on top of `MVC Model 
 - Extension methods for authorization, caching, api documentation
 - Selection BindingSources and named parameters (constant names only) e.g. `From.Body`, `From.Form`, `From.Route` etc.
 - Parameter name override e.g. From.Query<int>("id_override") `/route?id_override=12345`
+- Extensions
+  - Http methods - `.HttpPost()`...
+  - Caching - `.Cached(...)`
+  - Authorization - `.Authorize(...)`, `.AllowAnonymous()`
+  - AntiForgeryToken - `.ValidateAntiForgeryToken()`, `.IgnoreAntiforgeryToken()`
+  - Https - `.RequireHttps()`
+  - RequestSizeLimit - `.RequestSizeLimit(...)`, `.DisableRequestSizeLimit()`
+  - Produce, Consume for ApiExplorer - `.Produces<TModel>(...)`, `.Consumes(...)`
 
 ## Usage
 
 ```csharp
 // Startup
-services.AddMvcCore()
-  .AddRouting(routing => {});
-```
-
-- You have two ways to add routing: using `IMvcBuilder` or `IMvcCoreBuilder` extensions - `AddRouting`
-- In `AddRouting` pass callback with `IRoutingConfiguration` to register route parts
-
-### Adding controller
-
-```csharp
-// Startup
-services.AddMvcCore()
+services.AddMvcCore() // .AddMvc()
   .AddRouting(routing =>
-    // Add controller
-    routing.AddController<TestController>("controller-route-part", controller => {});
+  {
+    // Simple route
+    routing.AddController<OrdersController>("orders", controller =>
+      controller.AddRoute("dashboard", c => c.Dashboard())
+        .HttpGet());
+
+    // Authorize controller with "id" parameter from query
+    routing.AddController<TaskController>("tasks", controller =>
+      controller.AddRoute("edit", c => c.Edit(From.Query<int>("id"))) // `From.*` is matches `[From*]` attributes
+        .HttpGet()
+        .Authorize());
+
+    // Multiple routes in one controller
+    routing.AddController<WashingController>("washing", controller =>
+    {
+      // Override controller .Authorize()
+      controller.AddRoute("wash", c => c.Wash(From.Query<int>())) // If name not specified - used method parameter name
+        .HttpGet()
+        .AllowAnonymous()
+
+      // Inherit authorization requirement from controller
+      controller.AddRoute("dry", c => c.Dry(From.Body<DryModel>()))
+        .HttpPost()
+        .ValidateAntiForgeryToken();
+
+    }).Authorize()
+  });
 ```
-
-- To add controller you need to specify `TController` and route part
-- You can remove route part: `AddController<TestController>(controller => {})`. It will be an empty string (so just `/` route)
-
-### Adding routes
-
-```csharp
-// Startup
-services.AddMvcCore()
-  .AddRouting(routing =>
-    routing.AddController<TestController>("controller-route-part",
-      // Add route
-      controller => controller.AddRoute("action-route-part", c => c.TestMethod()));
-```
-
-- To add action route you need to specify an action route (goes after controller route `controller/action`) and expression for method
-- By default route adds without any http method constraint (so you can call it with get, post, etc.)
-
-### Adding constraints
-
-```csharp
-// Startup
-services.AddMvcCore()
-  .AddRouting(routing =>
-    routing.AddController<TestController>("controller-route-part",
-      controller =>
-        controller.AddRoute("action-route-part", c => c.TestMethod())
-          // Add constraints to route
-          .HttpGet()
-          .AllowAnonymous())
-        // Authorize on controller
-       .Authorize());
-```
-
-- You can add constraints to both: `controller` and `route` using `IRouteBuilder` returned by `AddController` or `AddRoute`
-- You can add them by using `AddFilter`/`AddConstraint` method with `IServiceProvider` parameter or extension without it
-- You can add named routes by using `Named` method
-- To create custom filters and constraints you need `IFilterMetadata` or `IActionConstraintMetadata` in `Microsoft.AspNetCore.Mvc.Abstractions` package or inherit from derivatives
-
-### Adding parameters
-
-```csharp
-services.AddMvcCore()
-  .AddRouting(routing =>
-    routing.AddController<TestController>("controller-route-part",
-      controller =>
-        controller.AddRoute("action-route-part",
-            // Add parameter source
-            c => c.TestMethod(From.Query<string>("optional_parameter_name")))
-          .HttpGet());
-```
-
-- You can specify from wich source mvc will bind your model
-- To specify parameters you have to use `From` static class
-- To inject arguments from DI use `From.Services<T>` method
-- `From.*` is matches `[From*]` attributes
