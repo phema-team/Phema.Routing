@@ -31,11 +31,11 @@ namespace Phema.Routing
 					: new AttributeRouteModel(
 							new RouteAttribute(metadata.Template)
 							{
-								Name = metadata.Name
+								Name = metadata.ActionName
 							})
 			};
 
-			foreach (var constraint in metadata.Constraints)
+			foreach (var constraint in metadata.ActionConstraints)
 			{
 				model.ActionConstraints.Add(constraint(provider));
 			}

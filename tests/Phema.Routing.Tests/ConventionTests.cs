@@ -31,9 +31,9 @@ namespace Phema.Routing.Tests
 				{
 					[controllerTypeInfo] = new RouteDeclaration("test")
 					{
-						Name = "name",
+						ActionName = "name",
 						Filters = { sp => new RequireHttpsAttribute()},
-						Constraints = { sp => new HttpMethodActionConstraint(new [] { "method" })}
+						ActionConstraints = { sp => new HttpMethodActionConstraint(new [] { "method" })}
 					}
 				}
 			});
@@ -73,9 +73,9 @@ namespace Phema.Routing.Tests
 				{
 					[actionMethodInfo] = new RouteDeclaration("test")
 					{
-						Name = "name",
+						ActionName = "name",
 						Filters = { sp => new RequireHttpsAttribute()},
-						Constraints = { sp => new HttpMethodActionConstraint(new [] { "method" })}
+						ActionConstraints = { sp => new HttpMethodActionConstraint(new [] { "method" })}
 					}
 				}
 			});

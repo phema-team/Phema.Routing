@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Reflection;
-
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -66,7 +65,7 @@ namespace Phema.Routing.Tests
 			var options = provider.GetRequiredService<IOptions<RoutingOptions>>().Value;
 			
 			var (_, actionMetadata) = Assert.Single(options.Actions);
-			Assert.Equal("name", actionMetadata.Name);
+			Assert.Equal("name", actionMetadata.ActionName);
 		}
 		
 		[Fact]
@@ -82,7 +81,7 @@ namespace Phema.Routing.Tests
 			var options = provider.GetRequiredService<IOptions<RoutingOptions>>().Value;
 			
 			var (_, actionMetadata) = Assert.Single(options.Controllers);
-			Assert.Equal("name", actionMetadata.Name);
+			Assert.Equal("name", actionMetadata.ActionName);
 		}
 		
 		[Fact]
@@ -99,7 +98,7 @@ namespace Phema.Routing.Tests
 			var options = provider.GetRequiredService<IOptions<RoutingOptions>>().Value;
 			
 			var (_, actionMetadata) = Assert.Single(options.Actions);
-			var constraint = Assert.Single(actionMetadata.Constraints)(provider);
+			var constraint = Assert.Single(actionMetadata.ActionConstraints)(provider);
 
 			var methodActionConstraint = Assert.IsType<HttpMethodActionConstraint>(constraint);
 			
@@ -119,7 +118,7 @@ namespace Phema.Routing.Tests
 			var options = provider.GetRequiredService<IOptions<RoutingOptions>>().Value;
 			
 			var (_, actionMetadata) = Assert.Single(options.Controllers);
-			var constraint = Assert.Single(actionMetadata.Constraints)(provider);
+			var constraint = Assert.Single(actionMetadata.ActionConstraints)(provider);
 
 			var methodActionConstraint = Assert.IsType<HttpMethodActionConstraint>(constraint);
 			

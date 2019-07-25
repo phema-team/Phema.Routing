@@ -3,14 +3,14 @@ namespace Phema.Routing
 	/// <summary>
 	/// Билдер для маршрутов методов. Расширения на нем не применить к контроллерам
 	/// </summary>
-	public interface IControllerActionRouteBuilder : IRouteBuilder<IControllerActionRouteBuilder>
+	public interface IActionRouteBuilder : IRouteBuilder<IActionRouteBuilder>
 	{
 	}
 	
-	internal sealed class ControllerActionRouteBuilder
-		: RouteBuilder<IControllerActionRouteBuilder>, IControllerActionRouteBuilder
+	internal sealed class ActionRouteBuilder
+		: RouteBuilder<IActionRouteBuilder>, IActionRouteBuilder
 	{
-		public ControllerActionRouteBuilder(RouteDeclaration declaration) : base(declaration)
+		public ActionRouteBuilder(RouteDeclaration declaration) : base(declaration)
 		{
 		}
 	}

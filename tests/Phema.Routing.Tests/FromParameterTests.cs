@@ -39,7 +39,7 @@ namespace Phema.Routing.Tests
 
 			var provider = services.BuildServiceProvider();
 			var options = provider.GetRequiredService<IOptions<RoutingOptions>>().Value;
-			
+
 			var (_, parameterMetadata) = Assert.Single(options.Parameters);
 			Assert.Equal(BindingSource.Query, parameterMetadata.BindingSource);
 		}

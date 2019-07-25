@@ -5,7 +5,7 @@ namespace Phema.Routing
 {
 	public static class ControllerBuilderExtensions
 	{
-		public static IControllerActionRouteBuilder AddRoute<TController, TResult>(
+		public static IActionRouteBuilder AddRoute<TController, TResult>(
 			this IControllerBuilder<TController> builder,
 			Expression<Func<TController, TResult>> expression)
 		{

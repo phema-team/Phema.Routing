@@ -9,8 +9,8 @@ namespace Phema.Routing
 	{
 		string Template { get; }
 		IList<Func<IServiceProvider, IFilterMetadata>> Filters { get; }
-		IList<Func<IServiceProvider, IActionConstraintMetadata>> Constraints { get; }
-		string Name { get; set; }
+		IList<Func<IServiceProvider, IActionConstraintMetadata>> ActionConstraints { get; }
+		string ActionName { get; set; }
 	}
 
 	internal sealed class RouteDeclaration : IRouteDeclaration
@@ -19,12 +19,12 @@ namespace Phema.Routing
 		{
 			Template = template;
 			Filters = new List<Func<IServiceProvider, IFilterMetadata>>();
-			Constraints = new List<Func<IServiceProvider, IActionConstraintMetadata>>();
+			ActionConstraints = new List<Func<IServiceProvider, IActionConstraintMetadata>>();
 		}
 
 		public string Template { get; }
 		public IList<Func<IServiceProvider, IFilterMetadata>> Filters { get; }
-		public IList<Func<IServiceProvider, IActionConstraintMetadata>> Constraints { get; }
-		public string Name { get; set; }
+		public IList<Func<IServiceProvider, IActionConstraintMetadata>> ActionConstraints { get; }
+		public string ActionName { get; set; }
 	}
 }

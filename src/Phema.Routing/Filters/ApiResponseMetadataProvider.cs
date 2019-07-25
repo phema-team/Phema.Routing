@@ -5,14 +5,14 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace Phema.Routing
 {
-	internal sealed class ApiResponseMetadataProvider : IApiResponseMetadataProvider
+	internal sealed class ApiResponseMetadataProvider<TModel> : IApiResponseMetadataProvider
 	{
 		private readonly string[] contentTypes;
 
-		public ApiResponseMetadataProvider(Type type, int statusCode, string[] contentTypes)
+		public ApiResponseMetadataProvider(int statusCode, string[] contentTypes)
 		{
 			this.contentTypes = contentTypes;
-			Type = type;
+			Type = typeof(TModel);
 			StatusCode = statusCode;
 		}
 		

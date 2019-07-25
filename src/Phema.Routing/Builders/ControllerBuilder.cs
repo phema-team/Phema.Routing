@@ -6,7 +6,7 @@ namespace Phema.Routing
 {
 	public interface IControllerBuilder<TController>
 	{
-		IControllerActionRouteBuilder AddRoute<TResult>(
+		IActionRouteBuilder AddRoute<TResult>(
 			string template,
 			Expression<Func<TController, TResult>> expression);
 	}
@@ -20,7 +20,7 @@ namespace Phema.Routing
 			this.services = services;
 		}
 
-		public IControllerActionRouteBuilder AddRoute<TResult>(
+		public IActionRouteBuilder AddRoute<TResult>(
 			string template,
 			Expression<Func<TController, TResult>> expression)
 		{
@@ -38,7 +38,7 @@ namespace Phema.Routing
 				options.Actions.Add(methodCall.Method, declaration);
 			});
 
-			return new ControllerActionRouteBuilder(declaration);
+			return new ActionRouteBuilder(declaration);
 		}
 	}
 }

@@ -36,7 +36,8 @@ namespace Phema.Routing
 
 				if (!ParameterDeclarationFactoryMap.TryGetValue(argument.Method.Name, out var declarationFactory))
 				{
-					throw new InvalidOperationException($"Use {nameof(From)} static class to configure routing binding sources");
+					throw new InvalidOperationException(
+						$"Use '{nameof(From)}' static class to configure routing binding sources");
 				}
 
 				var info = methodParameters[index];
@@ -73,10 +74,41 @@ namespace Phema.Routing
 			{
 				null => null,
 				ConstantExpression constant => (string) constant.Value,
-				_ => throw new InvalidOperationException($"Only {nameof(ConstantExpression)} allowed. Literal constants prefered")
+				MemberExpression memberExpression => GetFromMemberExpression(memberExpression),
+				_ => throw new InvalidOperationException($"Invalid expression type: {nameExpression.GetType()}")
 			};
 
 			return new ParameterDeclaration(bindingSource, modelName);
+		}
+
+		private static string GetFromMemberExpression(MemberExpression memberExpression)
+		{
+			return memberExpression.Expression switch
+			{
+				null => GetByMemberType(memberExpression, memberExpression.Member.DeclaringType, null),
+				ConstantExpression constantExpression =>
+				GetByMemberType(memberExpression, memberExpression.Member.DeclaringType, constantExpression.Value),
+				_ => throw new InvalidOperationException(
+					$"Only {nameof(ConstantExpression)} allowed. Literal constants prefered")
+			};
+		}
+
+		private static string GetByMemberType(MemberExpression memberExpression, Type type, object value)
+		{
+			return memberExpression.Member.MemberType switch
+			{
+				MemberTypes.Field => type
+					.GetField(memberExpression.Member.Name,
+						BindingFlags.Static | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+					.GetValue(value)
+					.ToString(),
+				MemberTypes.Property => type
+					.GetProperty(memberExpression.Member.Name,
+						BindingFlags.Static | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+					.GetValue(value)
+					.ToString(),
+				_ => throw new InvalidOperationException("Only fields and properties supported")
+			};
 		}
 	}
 }
