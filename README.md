@@ -23,7 +23,7 @@ C# strongly typed routing library for `ASP.NET Core` built on top of `MVC Model 
 
 ```csharp
 // Startup
-services.AddMvcCore() // .AddMvc()
+services.AddControllers() // .AddMvc(), .AddMvcCore()
   .AddRouting(routing =>
   {
     // Simple route
@@ -33,7 +33,7 @@ services.AddMvcCore() // .AddMvc()
 
     // Authorize controller with "id" parameter from query
     routing.AddController<TaskController>("tasks", controller =>
-      controller.AddRoute("edit", c => c.Edit(From.Query<int>("id"))) // `From.*` is matches `[From*]` attributes
+      controller.AddRoute("edit/{id}", c => c.Edit(From.Route<int>("id"))) // `From.*` is matches `[From*]` attributes
         .HttpGet()
         .Authorize());
 
@@ -49,7 +49,12 @@ services.AddMvcCore() // .AddMvc()
       controller.AddRoute("dry", c => c.Dry(From.Body<DryModel>()))
         .HttpPost()
         .ValidateAntiForgeryToken();
+    }).Authorize();
 
-    }).Authorize()
+    // Multiple binding sources
+    routing.AddController<MoviesController>("movies", controller =>
+      controller.AddRoute("{category}/upload", c =>
+        c.Upload(From.Route<string>(), From.Body<UploadMovieModel>(), From.Query<bool>("compress")))
+        .HttpPost());
   });
 ```

@@ -4,7 +4,7 @@
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<RootNamespace>Phema.Routing</RootNamespace>
 		<LangVersion>8</LangVersion>
-		<Version>3.0.1</Version>
+		<Version>3.0.2</Version>
 		<Authors>sergeyshaykhullin</Authors>
 		<Description>C# typed routing library for ASP.NET Core</Description>
 		<PackageTags>.NET Core;ASP.NET Core;Routing</PackageTags>

@@ -1,19 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.DependencyInjection;
-using Phema.Routing;
 
-namespace AspNetCoreExample
+namespace Phema.Routing.MvcExample
 {
 	public class Startup
 	{
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddMvc(o =>
-				{
-					o.EnableEndpointRouting = false;
-					o.OutputFormatters.Add(new XmlSerializerOutputFormatter());
-				})
+			services.AddMvc(o => o.EnableEndpointRouting = false)
 				.AddRouting(routing =>
 					routing.AddController<ExampleController>(controller =>
 					{

@@ -11,7 +11,7 @@ namespace Phema.Routing
 			this IMvcCoreBuilder builder,
 			Action<IRoutingBuilder> routing)
 		{
-			AddRouting(builder.Services, routing);
+			builder.Services.AddRouting(routing);
 
 			return builder;
 		}
@@ -20,16 +20,18 @@ namespace Phema.Routing
 			this IMvcBuilder builder,
 			Action<IRoutingBuilder> routing)
 		{
-			AddRouting(builder.Services, routing);
+			builder.Services.AddRouting(routing);
 
 			return builder;
 		}
 
-		private static void AddRouting(IServiceCollection services, Action<IRoutingBuilder> routing)
+		public static IServiceCollection AddRouting(
+			this IServiceCollection services,
+			Action<IRoutingBuilder> routing)
 		{
-			services.AddSingleton<IPostConfigureOptions<MvcOptions>, RoutingPostConfigureOptions>();
-
 			routing(new RoutingBuilder(services));
+
+			return services.AddSingleton<IPostConfigureOptions<MvcOptions>, RoutingPostConfigureOptions>();
 		}
 	}
 }

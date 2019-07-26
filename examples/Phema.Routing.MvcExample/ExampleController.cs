@@ -1,10 +1,10 @@
-namespace AspNetCoreExample
+namespace Phema.Routing.MvcExample
 {
 	public class ExampleController
 	{
 		public int CalculateLength(string value)
 		{
-			return value.Length;
+			return value?.Length ?? 0;
 		}
 
 		public string GenerateString(char character, int count)

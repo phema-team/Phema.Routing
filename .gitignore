@@ -86,3 +86,19 @@ examples/AspNetCoreExample/bin/Debug/netcoreapp3\.0/
 tests/Phema\.Routing\.Tests/bin/Debug/netcoreapp3\.0/
 
 tests/Phema\.Routing\.Extensions\.Tests/bin/Debug/netcoreapp3\.0/
+
+examples/Phema\.Routing\.EndpointExample/bin/Debug/netcoreapp3\.0/
+
+examples/Phema\.Routing\.EndpointExample/obj/Debug/netcoreapp3\.0/
+
+examples/Phema\.Routing\.EndpointExample/obj/
+
+examples/Phema\.Routing\.MvcExample/bin/Release/netcoreapp3\.0/
+
+examples/Phema\.Routing\.MvcExample/obj/Debug/netcoreapp3\.0/
+
+examples/Phema\.Routing\.MvcExample/obj/Release/netcoreapp3\.0/
+
+examples/Phema\.Routing\.MvcExample/bin/Debug/netcoreapp3\.0/
+
+examples/Phema\.Routing\.MvcExample/obj/
