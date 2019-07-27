@@ -4,7 +4,7 @@
 
 C# strongly typed routing library for `ASP.NET Core` built on top of `MVC Model conventions` with built-in `From.*`, `ApiExplorer`, `Authorization` and `Caching` support
 
-### Features
+## Features
 
 - Flexible constraint and filter configuration
 - Extension methods for authorization, caching, api documentation
@@ -57,4 +57,40 @@ services.AddControllers() // .AddMvc(), .AddMvcCore()
         c.Upload(From.Route<string>(), From.Body<UploadMovieModel>(), From.Query<bool>("compress")))
         .HttpPost());
   });
+```
+
+## Action url generation (IUrlHelper used)
+
+```csharp
+// From.Query with parameter override
+services.AddRouting(routing =>
+  routing.AddController<Controller>("controller", controller =>
+    controller.AddRoute("action", c => c.Action(From.Query<int>("parameter")))));
+
+// "controller/action?parameter=10"
+var action = Url.Action<Controller>(c => c.Action(10));
+
+// From.Route with route part override
+services.AddRouting(routing =>
+  routing.AddController<Controller>("controller", controller =>
+    controller.AddRoute("action/{mode}", c => c.Route(From.Route<Mode>("mode")))));
+
+// "controller/action/access"
+var action = Url.Action<Controller>(c => c.Action("access"));
+
+// Combine query and route parts
+services.AddRouting(routing =>
+  routing.AddController<Controller>("controller", controller =>
+    controller.AddRoute("action/{mode}", c => c.Route(From.Query<int>(), From.Route<Mode>()))));
+
+// "controller/action/access?parameter=10"
+var action = Url.Action<Controller>(c => c.Action(10, "access"));
+
+// Get values from current request using From.Query in IUrlHelper generation
+services.AddRouting(routing =>
+  routing.AddController<Controller>("controller", controller =>
+    controller.AddRoute("action", c => c.Action(From.Query<int>()))));
+
+// "controller/action?parameter=VALUE_FROM_CURRENT_REQUEST"
+var action = Url.Action<Controller>(c => c.Action(From.Query<int>()));
 ```

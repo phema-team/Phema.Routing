@@ -102,3 +102,5 @@ examples/Phema\.Routing\.MvcExample/obj/Release/netcoreapp3\.0/
 examples/Phema\.Routing\.MvcExample/bin/Debug/netcoreapp3\.0/
 
 examples/Phema\.Routing\.MvcExample/obj/
+
+.vs

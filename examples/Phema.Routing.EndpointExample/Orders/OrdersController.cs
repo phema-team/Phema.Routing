@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Phema.Routing.EndpointExample
 {
-	public class OrdersController
+	public class OrdersController : ControllerBase
 	{
 		public OrderModel GetById(int orderId)
 		{
@@ -15,7 +15,9 @@ namespace Phema.Routing.EndpointExample
 
 		public IActionResult Create(OrderModel model)
 		{
-			return new CreatedResult("orders", model);
+			var action = Url.Action<OrdersController>(c => c.Create(From.Body<OrderModel>()));
+			
+			return Created(action, model);
 		}
 	}
 }
