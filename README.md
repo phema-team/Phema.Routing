@@ -23,7 +23,7 @@ C# strongly typed routing library for `ASP.NET Core` built on top of `MVC Model 
 
 ```csharp
 // Startup
-services.AddControllers() // .AddMvc(), .AddMvcCore()
+services.AddControllers() // `.AddMvc()`, `.AddMvcCore()`
   .AddRouting(routing =>
   {
     // Simple route
@@ -40,7 +40,7 @@ services.AddControllers() // .AddMvc(), .AddMvcCore()
     // Multiple routes in one controller
     routing.AddController<WashingController>("washing", controller =>
     {
-      // Override controller .Authorize()
+      // Override controller `.Authorize()`
       controller.AddRoute("wash", c => c.Wash(From.Query<int>())) // If name not specified - used method parameter name
         .HttpGet()
         .AllowAnonymous()
@@ -91,6 +91,7 @@ services.AddRouting(routing =>
   routing.AddController<Controller>("controller", controller =>
     controller.AddRoute("action", c => c.Action(From.Query<int>()))));
 
+// P.S. BindingSources not used in url will ignored (e.g. `From.Body<TModel>()` used only for compile reasons)
 // "controller/action?parameter=VALUE_FROM_CURRENT_REQUEST"
 var action = Url.Action<Controller>(c => c.Action(From.Query<int>()));
 ```
