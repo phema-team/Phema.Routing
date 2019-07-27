@@ -6,18 +6,11 @@ C# strongly typed routing library for `ASP.NET Core` built on top of `MVC Model 
 
 ## Features
 
+- Strongly typed url generation
+- BindingSources selection e.g. `From.Body`, `From.Route`, `From.From`
+- Named parameters override e.g. `From.Query<int>("query")`, `From.Route<string>("route")` `/{route}?query=12345`
 - Flexible constraint and filter configuration
-- Extension methods for authorization, caching, api documentation
-- Selection BindingSources and named parameters (constant names only) e.g. `From.Body`, `From.Form`, `From.Route` etc.
-- Parameter name override e.g. From.Query<int>("id_override") `/route?id_override=12345`
-- Extensions
-  - Http methods - `.HttpPost()`...
-  - Caching - `.Cached(...)`
-  - Authorization - `.Authorize(...)`, `.AllowAnonymous()`
-  - AntiForgeryToken - `.ValidateAntiForgeryToken()`, `.IgnoreAntiforgeryToken()`
-  - Https - `.RequireHttps()`
-  - RequestSizeLimit - `.RequestSizeLimit(...)`, `.DisableRequestSizeLimit()`
-  - Produce, Consume for ApiExplorer - `.Produces<TModel>(...)`, `.Consumes(...)`
+- Extension methods for authorization, caching, api documentation, etc
 
 ## Usage
 
@@ -95,3 +88,12 @@ services.AddRouting(routing =>
 // "controller/action?parameter=VALUE_FROM_CURRENT_REQUEST"
 var action = Url.Action<Controller>(c => c.Action(From.Query<int>()));
 ```
+
+## Extensions
+- Http methods - `.HttpPost()`...
+- Caching - `.Cached(...)`
+- Authorization - `.Authorize(...)`, `.AllowAnonymous()`
+- AntiForgeryToken - `.ValidateAntiForgeryToken()`, `.IgnoreAntiforgeryToken()`
+- Https - `.RequireHttps()`
+- RequestSizeLimit - `.RequestSizeLimit(...)`, `.DisableRequestSizeLimit()`
+- Produces, Consumes for ApiExplorer - `.Produces<TModel>(...)`, `.Consumes(...)`
