@@ -28,9 +28,9 @@ namespace Phema.Routing
 
 			services.Configure<RoutingOptions>(options =>
 			{
-				var methodCall = RouteBindingSourceHelper.GetInnerMethodCallExpression(expression);
+				var methodCall = RouteHelper.GetInnerMethodCallExpression(expression);
 
-				foreach (var (info, parameter) in RouteBindingSourceHelper.GetRouteParameters(methodCall))
+				foreach (var (info, parameter) in RouteHelper.GetRouteParameters(methodCall))
 				{
 					options.Parameters.Add(info, parameter);
 				}
