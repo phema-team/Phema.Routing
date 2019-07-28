@@ -1,6 +1,7 @@
 using System;
 using System.Linq.Expressions;
 using Microsoft.AspNetCore.Mvc.Abstractions;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Xunit;
 
 namespace Phema.Routing.Tests
@@ -90,7 +91,7 @@ namespace Phema.Routing.Tests
 
 			Assert.Null(routeParameter.declaration.ModelName);
 		}
-		
+
 		[Fact]
 		public void FromRouteSetsParameterName()
 		{
@@ -125,27 +126,27 @@ namespace Phema.Routing.Tests
 			var expression = RouteHelper.GetInnerMethodCallExpression<TestController, string>(
 				c => c.TestMethod(From.Route<string>()));
 
-			var parameters = new [] { new ParameterDescriptor() };
+			var parameters = new[] {new ParameterDescriptor {BindingInfo = new BindingInfo()}};
 			var arguments = RouteHelper.GetActionArgumentsFromExpression(parameters, expression);
-			
+
 			Assert.Empty(arguments);
 		}
-		
+
 		[Fact]
 		public void GetActionArguments_Constant()
 		{
 			var expression = RouteHelper.GetInnerMethodCallExpression<TestController, string>(
 				c => c.TestMethod("value"));
 
-			var parameters = new [] { new ParameterDescriptor { Name = "parameter" } };
+			var parameters = new[] {new ParameterDescriptor {BindingInfo = new BindingInfo(), Name = "parameter"}};
 			var arguments = RouteHelper.GetActionArgumentsFromExpression(parameters, expression);
-			
+
 			var (key, value) = Assert.Single(arguments);
-			
+
 			Assert.Equal("parameter", key);
 			Assert.Equal("value", value);
 		}
-		
+
 		[Fact]
 		public void GetActionArguments_Local()
 		{
@@ -154,12 +155,12 @@ namespace Phema.Routing.Tests
 			var expression = RouteHelper.GetInnerMethodCallExpression<TestController, string>(
 				c => c.TestMethod(localValueParameter));
 
-			var parameters = new [] { new ParameterDescriptor { Name = "parameter" } };
+			var parameters = new[] {new ParameterDescriptor {BindingInfo = new BindingInfo(), Name = "parameter"}};
 
 			var arguments = RouteHelper.GetActionArgumentsFromExpression(parameters, expression);
-			
+
 			var (key, value) = Assert.Single(arguments);
-			
+
 			Assert.Equal("parameter", key);
 			Assert.Equal("value", value);
 		}
