@@ -1,6 +1,8 @@
 # Phema.Routing
 
-[![Build Status](https://cloud.drone.io/api/badges/phema-team/Phema.Routing/status.svg)](https://cloud.drone.io/phema-team/Phema.Routing) [![Nuget](https://img.shields.io/nuget/v/Phema.Routing.svg)](https://www.nuget.org/packages/Phema.Routing)
+[![Build Status](https://cloud.drone.io/api/badges/phema-team/Phema.Routing/status.svg)](https://cloud.drone.io/phema-team/Phema.Routing)
+[![Nuget](https://img.shields.io/nuget/v/Phema.Routing.svg)](https://www.nuget.org/packages/Phema.Routing)
+[![Nuget](https://img.shields.io/nuget/dt/Phema.Routing.svg)](https://nuget.org/packages/Phema.Routing)
 
 C# strongly typed routing library for `ASP.NET Core` built on top of `MVC Model conventions` with built-in `From.*`, `ApiExplorer`, `Authorization` and `Caching` support
 
@@ -90,7 +92,8 @@ var action = Url.Action<Controller>(c => c.Action(From.Query<int>()));
 ```
 
 ## Extensions
-- Http methods - `.HttpPost()`...
+
+- Http methods - `.HttpPost()`, `.HttpGet()`...
 - Caching - `.Cached(...)`
 - Authorization - `.Authorize(...)`, `.AllowAnonymous()`
 - AntiForgeryToken - `.ValidateAntiForgeryToken()`, `.IgnoreAntiforgeryToken()`

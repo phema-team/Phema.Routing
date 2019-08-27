@@ -127,7 +127,7 @@ namespace Phema.Routing.Tests
 				c => c.TestMethod(From.Route<string>()));
 
 			var parameters = new[] {new ParameterDescriptor {BindingInfo = new BindingInfo()}};
-			var arguments = RouteHelper.GetActionArgumentsFromExpression(parameters, expression);
+			var arguments = RouteHelper.GetActionArguments(parameters, expression);
 
 			Assert.Empty(arguments);
 		}
@@ -139,7 +139,7 @@ namespace Phema.Routing.Tests
 				c => c.TestMethod("value"));
 
 			var parameters = new[] {new ParameterDescriptor {BindingInfo = new BindingInfo(), Name = "parameter"}};
-			var arguments = RouteHelper.GetActionArgumentsFromExpression(parameters, expression);
+			var arguments = RouteHelper.GetActionArguments(parameters, expression);
 
 			var (key, value) = Assert.Single(arguments);
 
@@ -157,7 +157,7 @@ namespace Phema.Routing.Tests
 
 			var parameters = new[] {new ParameterDescriptor {BindingInfo = new BindingInfo(), Name = "parameter"}};
 
-			var arguments = RouteHelper.GetActionArgumentsFromExpression(parameters, expression);
+			var arguments = RouteHelper.GetActionArguments(parameters, expression);
 
 			var (key, value) = Assert.Single(arguments);
 
