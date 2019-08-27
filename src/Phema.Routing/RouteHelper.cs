@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Linq.Expressions;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -48,7 +49,7 @@ namespace Phema.Routing
 			}
 		}
 
-		public static Dictionary<string, object> GetActionArgumentsFromExpression(
+		public static Dictionary<string, object> GetActionArguments(
 			IEnumerable<ParameterDescriptor> parameterDescriptors,
 			MethodCallExpression methodCallExpression)
 		{
@@ -71,7 +72,7 @@ namespace Phema.Routing
 					}
 				}
 
-				var argument = GetValueFromExpression(argumentExpression);
+				var argument = FromExpression(argumentExpression);
 
 				if (argument != null)
 				{
@@ -82,63 +83,62 @@ namespace Phema.Routing
 			return actionArguments;
 		}
 
-		private static ParameterDeclaration GetParameterDeclarationFromExpression(
+		private static object FromExpression(Expression expression)
+		{
+			return expression switch
+			{
+				ConstantExpression constant => constant.Value,
+				MemberExpression memberExpression => FromMemberExpression(memberExpression),
+				_ => null
+			};
+		}
+
+		private static object FromMemberExpression(MemberExpression memberExpression)
+		{
+			return memberExpression.Expression switch
+			{
+				null => GetValueFromExpression(
+					memberExpression,
+					value: null),
+
+				ConstantExpression constantExpression => GetValueFromExpression(
+					memberExpression,
+					constantExpression.Value),
+
+				_ => throw new InvalidExpressionException(
+					$"{memberExpression.Expression.GetType()} expression is not supported. Create issue if that a mistake")
+			};
+		}
+
+		private static object GetValueFromExpression(MemberExpression memberExpression, object value)
+		{
+			return memberExpression.Member switch
+			{
+				PropertyInfo propertyInfo => propertyInfo.GetMethod.Invoke(value, Array.Empty<object>()),
+				FieldInfo fieldInfo => fieldInfo.GetValue(value),
+				_ => throw new InvalidOperationException("Only fields and properties supported")
+			};
+		}
+
+		private static ParameterDeclaration FromMethodCallExpression(
 			MethodCallExpression expression,
 			BindingSource bindingSource)
 		{
 			return new ParameterDeclaration(
 				bindingSource,
-				GetValueFromExpression(expression.Arguments.FirstOrDefault())?.ToString());
-		}
-
-		private static object GetValueFromExpression(Expression expression)
-		{
-			return expression switch
-			{
-				ConstantExpression constant => constant.Value,
-				MemberExpression memberExpression => GetValueFromMemberExpression(memberExpression),
-				_ => null
-			};
-		}
-
-		private static object GetValueFromMemberExpression(MemberExpression memberExpression)
-		{
-			return memberExpression.Expression switch
-			{
-				null => GetValueByMemberType(memberExpression, memberExpression.Member.DeclaringType, null),
-				ConstantExpression constantExpression =>
-					GetValueByMemberType(memberExpression, memberExpression.Member.DeclaringType, constantExpression.Value),
-				_ => throw new InvalidOperationException(
-					$"{memberExpression.Expression.GetType()} expression is not supported. Create issue if that a mistake")
-			};
-		}
-
-		private static object GetValueByMemberType(MemberExpression memberExpression, Type type, object value)
-		{
-			return memberExpression.Member.MemberType switch
-			{
-				MemberTypes.Field => type
-					.GetField(memberExpression.Member.Name,
-						BindingFlags.Static | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-					.GetValue(value),
-				MemberTypes.Property => type
-					.GetProperty(memberExpression.Member.Name,
-						BindingFlags.Static | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-					.GetValue(value),
-				_ => throw new InvalidOperationException("Only fields and properties supported")
-			};
+				FromExpression(expression.Arguments.FirstOrDefault())?.ToString());
 		}
 
 		static RouteHelper()
 		{
 			ParameterDeclarationFactoryMap = new Dictionary<string, Func<MethodCallExpression, ParameterDeclaration>>
 			{
-				[nameof(From.Query)] = expression => GetParameterDeclarationFromExpression(expression, BindingSource.Query),
+				[nameof(From.Query)] = expression => FromMethodCallExpression(expression, BindingSource.Query),
 				[nameof(From.Body)] = _ => new ParameterDeclaration(BindingSource.Body),
-				[nameof(From.Route)] = expression => GetParameterDeclarationFromExpression(expression, BindingSource.Path),
-				[nameof(From.Header)] = expression => GetParameterDeclarationFromExpression(expression, BindingSource.Header),
+				[nameof(From.Route)] = expression => FromMethodCallExpression(expression, BindingSource.Path),
+				[nameof(From.Header)] = expression => FromMethodCallExpression(expression, BindingSource.Header),
 				[nameof(From.Services)] = _ => new ParameterDeclaration(BindingSource.Services),
-				[nameof(From.Form)] = expression => GetParameterDeclarationFromExpression(expression, BindingSource.Form),
+				[nameof(From.Form)] = expression => FromMethodCallExpression(expression, BindingSource.Form),
 				[nameof(From.Any)] = _ => new ParameterDeclaration(BindingSource.Custom),
 				[nameof(From.ModelBinding)] = _ => new ParameterDeclaration(BindingSource.ModelBinding),
 				[nameof(From.Special)] = _ => new ParameterDeclaration(BindingSource.Special),

@@ -29,7 +29,7 @@ namespace Phema.Routing
 				.OfType<ControllerActionDescriptor>()
 				.Single(ad => ad.MethodInfo == methodCallExpression.Method);
 
-			var actionArguments = RouteHelper.GetActionArgumentsFromExpression(actionDescriptor.Parameters, methodCallExpression);
+			var actionArguments = RouteHelper.GetActionArguments(actionDescriptor.Parameters, methodCallExpression);
 
 			return urlHelper.Action(actionDescriptor.ActionName, actionDescriptor.ControllerName, actionArguments);
 		}
