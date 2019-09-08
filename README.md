@@ -6,6 +6,12 @@
 
 C# strongly typed routing library for `ASP.NET Core` built on top of `MVC Model conventions` with built-in `From.*`, `ApiExplorer`, `Authorization` and `Caching` support
 
+## Installation
+
+```bash
+$> dotnet add package Phema.Routing
+```
+
 ## Features
 
 - Strongly typed url generation
